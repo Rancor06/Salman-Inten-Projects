@@ -1,0 +1,15 @@
+=== Task 4: Branching & Merge ===
+
+git branch feature-contact
+git checkout feature-contact
+
+New-Item contact.txt
+Add-Content contact.txt "Email: salmanamaricar@gmail.com"
+Add-Content contact.txt "GitHub: Rancor06"
+
+git add contact.txt
+git commit -m "Add: contact details"
+
+git checkout master
+git merge feature-contact
+git push

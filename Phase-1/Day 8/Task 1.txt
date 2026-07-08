@@ -1,0 +1,11 @@
+=== Task 1: Init & First Commit ===
+
+mkdir my-portfolio
+cd my-portfolio
+git init
+
+# Created about.txt with Name + Course
+
+git status
+git add about.txt
+git commit -m "Add: initial portfolio page"

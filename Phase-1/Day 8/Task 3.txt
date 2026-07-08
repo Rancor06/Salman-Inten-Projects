@@ -1,0 +1,10 @@
+=== Task 3: Make Changes & View History ===
+
+Add-Content about.txt "Skills: Python, Machine Learning, Data Science"
+
+git status
+git diff
+git add about.txt
+git commit -m "Add: skills section to portfolio"
+git push
+git log --oneline

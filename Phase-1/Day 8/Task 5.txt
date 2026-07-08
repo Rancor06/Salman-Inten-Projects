@@ -1,0 +1,17 @@
+=== Task 5: Clone & Explore ===
+
+cd "C:\My Stuff\Codes\Day 8"
+git clone https://github.com/Rancor06/my-portfolio.git my-portfolio-clone
+cd my-portfolio-clone
+git status
+
+git branch add-readme
+git checkout add-readme
+
+New-Item README.md
+Add-Content README.md "# My Portfolio"
+Add-Content README.md "A simple portfolio project created while learning Git and GitHub."
+
+git add README.md
+git commit -m "Add: README with project description"
+git push -u origin add-readme
