@@ -1,0 +1,97 @@
+1. Line Plot (Study Hours vs Avg Total Score)
+
+Why:
+A line plot is ideal for showing a trend across an ordered, continuous variable—here, how average score changes as study hours increase.
+
+What it represents:
+Average total_score for students grouped into study-hour ranges, connected to reveal the overall trend.
+
+Insight:
+There is a strong upward trend in average score as study hours increase. Average scores rise from about 54 (0–4 hrs/week) to around 93 (16–20 hrs/week), then level off near 100 for students studying 24+ hours per week, indicating diminishing returns at very high study durations.
+
+---
+
+2. Bar Chart (Average Total Score by Grade)
+
+Why:
+Bar charts are ideal for comparing aggregated numeric values across categories.
+
+What it represents:
+The mean total_score for each letter grade.
+
+Insight:
+The average scores follow the expected grade hierarchy:
+A (96.0) > B (77.9) > C (63.6) > D (49.4) > F (35.5).
+This confirms that grades are assigned consistently based on score without any noticeable anomalies.
+
+---
+
+3. Histogram (Distribution of Total Score)
+
+Why:
+Histograms reveal the distribution and overall shape of a numeric variable.
+
+What it represents:
+The number of students falling into different total score ranges.
+
+Insight:
+The distribution is left-skewed (skew ≈ -0.82). Most students score toward the higher end, with a median of 87.5 and a mean of 84.3. The longer tail extends toward lower scores, indicating that high-performing students greatly outnumber low-performing ones.
+
+---
+
+4. Scatter Plot (Study Hours vs Total Score)
+
+Why:
+Scatter plots visualize relationships between two continuous variables at the individual level.
+
+What it represents:
+Each point represents a student's weekly study hours plotted against their total score.
+
+Insight:
+There is a strong positive correlation (r ≈ 0.81) between study hours and total score. The points form a clear upward trend that gradually flattens near the maximum score of 100 due to the score ceiling.
+
+---
+
+5. Box Plot (Total Score Distribution by Grade)
+
+Why:
+Box plots summarize the distribution, spread, median, and outliers within each category.
+
+What it represents:
+The distribution of total scores for every grade category.
+
+Insight:
+Each grade has a compact score distribution with standard deviations of only about 4–5 points. The score ranges for adjacent grades do not overlap (for example, B: 70–85 and C: 55–70), showing that grade boundaries are strict score cutoffs rather than overlapping categories.
+
+---
+
+6. Count Plot (Number of Students per Grade)
+
+Why:
+Count plots display the frequency of observations in each category.
+
+What it represents:
+The total number of students receiving each letter grade.
+
+Insight:
+The dataset is heavily skewed toward high-performing students:
+- A: 548,644 (~55%)
+- B: 258,174 (~26%)
+- C: 141,980 (~14%)
+- D: 44,998 (~4.5%)
+- F: 6,204 (~0.6%)
+
+Only a very small percentage of students fail, while more than half achieve an A grade.
+
+---
+
+7. Bonus: Pair Plot (Numeric Features by Grade)
+
+Why:
+A pair plot provides a complete overview of relationships among all numeric variables while also showing their distributions.
+
+What it represents:
+Scatter plots for every pair of numeric variables, colored by grade, with feature distributions shown along the diagonal.
+
+Insight:
+Weekly self-study hours are by far the strongest predictor of both total score and grade, with a correlation of approximately 0.81. In contrast, attendance percentage (≈0.001) and class participation (≈-0.001) show virtually no correlation with total score. Within this dataset, study time is the primary factor influencing academic performance.
