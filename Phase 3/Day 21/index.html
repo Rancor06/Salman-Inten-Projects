@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A. Salman Maricar — AI &amp; Data Science Student</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="brand">
+                <span class="brand-mark">AS</span>
+                <div class="brand-text">
+                    <span class="brand-name">A. Salman Maricar</span>
+                    <span class="brand-title">AI &amp; Data Science Student</span>
+                </div>
+            </div>
+            <nav class="site-nav" aria-label="Primary">
+                <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navList">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul id="navList">
+                    <li><a href="#home"><span class="idx">01</span>Home</a></li>
+                    <li><a href="#about"><span class="idx">02</span>About</a></li>
+                    <li><a href="#skills"><span class="idx">03</span>Skills</a></li>
+                    <li><a href="#projects"><span class="idx">04</span>Projects</a></li>
+                    <li><a href="#education"><span class="idx">05</span>Education</a></li>
+                    <li><a href="#contact"><span class="idx">06</span>Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- HERO -->
+        <section id="home" class="hero">
+            <div class="hero-inner">
+                <div class="hero-copy">
+                    <p class="eyebrow">Welcome to my portfolio</p>
+                    <h1>Building AI systems that hold up to scrutiny.</h1>
+                    <p class="hero-lede">
+                        I'm an AI &amp; Data Science undergraduate who works on generative AI,
+                        document intelligence, and applied machine learning — from a
+                        certificate-forgery detector to published intrusion-detection research.
+                        I care about models that are accurate <em>and</em> explainable.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+                    </div>
+                </div>
+                <figure class="hero-figure">
+                    <img src="profile.jpg" alt="Portrait of A. Salman Maricar">
+                    <figcaption>A. Salman Maricar — Chennai, India</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" class="about">
+            <div class="section-head">
+                <span class="section-idx">02 / About</span>
+                <h2>A little about my work</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-copy">
+                    <p>
+                        I'm an AI &amp; Data Science student with practical experience building and
+                        refining generative AI systems, including a virtual try-on model. I'm
+                        proficient in Python, image processing, and model debugging, with strong
+                        analytical and problem-solving skills developed through real-world project work.
+                    </p>
+                    <p>
+                        My objective is to keep building systems where machine learning meets
+                        real-world trust and verification — document authenticity, security, and
+                        explainable AI. I'm actively involved in international research
+                        conferences, staying current with emerging trends and challenges in the field.
+                    </p>
+                </div>
+                <aside class="about-aside" aria-label="Quick facts">
+                    <div class="fact-card">
+                        <span class="fact-label">Current CGPA</span>
+                        <span class="fact-value">8.9</span>
+                    </div>
+                    <div class="fact-card">
+                        <span class="fact-label">Languages</span>
+                        <span class="fact-value fact-value-sm">English · Tamil · Hindi · Japanese</span>
+                    </div>
+                    <div class="fact-card">
+                        <span class="fact-label">Based in</span>
+                        <span class="fact-value fact-value-sm">Chennai, India</span>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills" class="skills">
+            <div class="section-head">
+                <span class="section-idx">03 / Skills</span>
+                <h2>Tools I build with</h2>
+            </div>
+            <ul class="skills-grid">
+                <li class="skill-card"><span class="skill-name">Python</span><span class="skill-tag">intermediate</span></li>
+                <li class="skill-card"><span class="skill-name">Generative AI</span><span class="skill-tag">image processing &amp; masking</span></li>
+                <li class="skill-card"><span class="skill-name">Model Debugging</span><span class="skill-tag">performance tuning</span></li>
+                <li class="skill-card"><span class="skill-name">OCR &amp; Verification</span><span class="skill-tag">document systems</span></li>
+                <li class="skill-card"><span class="skill-name">SQL</span><span class="skill-tag">basics</span></li>
+                <li class="skill-card"><span class="skill-name">Flask</span><span class="skill-tag">backend</span></li>
+                <li class="skill-card"><span class="skill-name">HTML / CSS</span><span class="skill-tag">semantic markup</span></li>
+                <li class="skill-card"><span class="skill-name">JavaScript</span><span class="skill-tag">frontend</span></li>
+                <li class="skill-card"><span class="skill-name">SQLite</span><span class="skill-tag">data storage</span></li>
+                <li class="skill-card"><span class="skill-name">C Programming</span><span class="skill-tag">fundamentals</span></li>
+            </ul>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects" class="projects">
+            <div class="section-head">
+                <span class="section-idx">04 / Projects</span>
+                <h2>Selected work</h2>
+            </div>
+            <div class="project-grid">
+
+                <article class="project-card">
+                    <span class="project-index">01</span>
+                    <h3>Academic Certificate Authenticity Validator</h3>
+                    <p class="project-meta">Smart India Hackathon Project</p>
+                    <p>
+                        A machine-learning system that detects forged and manipulated academic
+                        certificates. Implements an OCR and verification pipeline to give
+                        institutions a practical, streamlined way to check document authenticity.
+                    </p>
+                    <ul class="tech-list">
+                        <li>Python</li><li>OCR</li><li>Machine Learning</li>
+                    </ul>
+                </article>
+
+                <article class="project-card">
+                    <span class="project-index">02</span>
+                    <h3>NeuraDocCluster AI</h3>
+                    <p class="project-meta">Intelligent Hierarchical Document Organization System</p>
+                    <p>
+                        Developed and tested a generative AI virtual try-on system for 3D outfit
+                        visualization, with image preprocessing, masking, and output optimization
+                        to improve garment alignment and model accuracy.
+                    </p>
+                    <ul class="tech-list">
+                        <li>Python</li><li>Generative AI</li><li>Image Processing</li>
+                    </ul>
+                </article>
+
+                <article class="project-card">
+                    <span class="project-index">03</span>
+                    <h3>Generative AI Virtual Try-On System</h3>
+                    <p class="project-meta">Genesys Research &amp; AI Labs · Innolift Ventures</p>
+                    <p>
+                        Built and tested a virtual try-on system for 3D outfit visualization across
+                        two internships, collaborating on model testing, debugging, and
+                        performance enhancement for image-based try-on applications.
+                    </p>
+                    <ul class="tech-list">
+                        <li>Python</li><li>Model Debugging</li><li>Full-Stack AI</li>
+                    </ul>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- EDUCATION -->
+        <section id="education" class="education">
+            <div class="section-head">
+                <span class="section-idx">05 / Education</span>
+                <h2>Academic record</h2>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col">Qualification</th>
+                            <th scope="col">Institution</th>
+                            <th scope="col">Year</th>
+                            <th scope="col">Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Qualification">B.Tech, AI &amp; Data Science</td>
+                            <td data-label="Institution">B. S. Abdur Rahman Crescent University, Chennai</td>
+                            <td data-label="Year">Ongoing</td>
+                            <td data-label="Result">CGPA 8.9</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Qualification">Grade 12</td>
+                            <td data-label="Institution">Cauvery Public School, Karaikal</td>
+                            <td data-label="Year">May 2024</td>
+                            <td data-label="Result">80%</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Qualification">Grade 10</td>
+                            <td data-label="Institution">Cauvery Public School, Karaikal</td>
+                            <td data-label="Year">May 2022</td>
+                            <td data-label="Result">81%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 class="sub-heading">Certifications</h3>
+            <ol class="cert-list">
+                <li><span class="cert-name">C Programming Basics</span><span class="cert-issuer">Simplilearn</span></li>
+                <li><span class="cert-name">SQL (Basic)</span><span class="cert-issuer">HackerRank</span></li>
+                <li><span class="cert-name">Python (Basic)</span><span class="cert-issuer">HackerRank</span></li>
+            </ol>
+
+            <aside class="recognition" aria-label="Research and internships">
+                <h3 class="sub-heading">Recognition &amp; Experience</h3>
+                <div class="recognition-grid">
+                    <div class="recognition-item">
+                        <span class="rec-tag">Publication</span>
+                        <p>Co-authored an IEEE conference paper on deep-learning-based intrusion
+                        detection, presented at ICCST 2025 in San Antonio, TX. A second paper has
+                        been accepted for an IEEE conference in Hyderabad, August 2026.</p>
+                    </div>
+                    <div class="recognition-item">
+                        <span class="rec-tag">Internship</span>
+                        <p><strong>Innolift Ventures, Chennai</strong> — Full Stack AI Developer, 2 months.</p>
+                    </div>
+                    <div class="recognition-item">
+                        <span class="rec-tag">Internship</span>
+                        <p><strong>Genesys Research &amp; AI Labs (grail), Puducherry</strong> — AI Developer, 2 weeks.</p>
+                    </div>
+                </div>
+            </aside>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="contact">
+            <div class="section-head">
+                <span class="section-idx">06 / Contact</span>
+                <h2>Let's work together</h2>
+            </div>
+            <div class="contact-grid">
+                <form class="contact-form" action="#" method="POST">
+                    <div class="field">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="field">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+                <ul class="contact-list">
+                    <li>
+                        <span class="contact-label">Email</span>
+                        <a href="mailto:salmanamaricar@gmail.com">salmanamaricar@gmail.com</a>
+                    </li>
+                    <li>
+                        <span class="contact-label">Phone</span>
+                        <a href="tel:+918248744349">+91 82487 44349</a>
+                    </li>
+                    <li>
+                        <span class="contact-label">GitHub</span>
+                        <a href="https://github.com/Rancor06" target="_blank" rel="noopener">github.com/Rancor06</a>
+                    </li>
+                    <li>
+                        <span class="contact-label">LinkedIn</span>
+                        <a href="www.linkedin.com/in/salman-maricar-b28616372" target="_blank" rel="noopener">linkedin.com/in/salman-maricar-b28616372</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p>&copy; 2026 A. Salman Maricar. All rights reserved.</p>
+            <ul class="social-links">
+                <li><a href="https://github.com/Rancor06" target="_blank" rel="noopener">GitHub</a></li>
+                <li><a href="https://www.linkedin.com/in/salman-maricar-b28616372" target="_blank" rel="noopener">LinkedIn</a></li>
+                <li><a href="mailto:salmanamaricar@gmail.com">Email</a></li>
+            </ul>
+            <p class="thanks">Thanks for stopping by — always glad to talk AI, research, or new ideas.</p>
+        </div>
+    </footer>
+
+    <script>
+        const navToggle = document.getElementById('navToggle');
+        const navList = document.getElementById('navList');
+        navToggle.addEventListener('click', () => {
+            const open = navList.classList.toggle('open');
+            navToggle.setAttribute('aria-expanded', open);
+        });
+        navList.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('open');
+                navToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
+</body>
+</html>
