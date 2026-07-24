@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Students — EduTrack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="edutrack.css">
+</head>
+<body>
+
+<div class="app">
+
+    <nav class="sidebar">
+        <div class="brand-mark">
+            <div class="glyph">ET</div>
+            <div class="name">EduTrack</div>
+        </div>
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="sidebar-nav" id="sidebarNav">
+            <a href="dashboard.html"><span class="dot"></span>Dashboard</a>
+            <a href="students.html" class="active"><span class="dot"></span>Students</a>
+            <a href="#" aria-disabled="true"><span class="dot"></span>Reports</a>
+            <a href="#" aria-disabled="true"><span class="dot"></span>Settings</a>
+        </div>
+        <div class="sidebar-foot">
+            Ms. Rao<br>
+            Computer Science · Sem 3
+        </div>
+    </nav>
+
+    <main class="main">
+
+        <div class="topbar">
+            <div>
+                <span class="eyebrow">Cohort · CS-2026-A</span>
+                <h1>Student Register</h1>
+                <p class="sub">All 42 students. Risk status is estimated from enrollment data and first-semester performance.</p>
+            </div>
+            <a href="login.html" class="btn btn-ghost">Sign out</a>
+        </div>
+
+        <div class="panel">
+            <div class="panel-head">
+                <h2>All students</h2>
+                <div class="search-box">
+                    <span>&#128269;</span>
+                    <input type="text" id="studentSearch" placeholder="Search by name or ID…">
+                </div>
+            </div>
+
+            <table id="studentTable">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Course</th>
+                        <th>Attendance</th>
+                        <th>Avg. grade</th>
+                        <th>Risk status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <div class="student-avatar">AC</div>
+                                <div>
+                                    <div class="student-name">Amara Chen</div>
+                                    <div class="student-id">STU-10231</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>B.Tech CSE</td>
+                        <td>92%</td>
+                        <td>8.4</td>
+                        <td>
+                            <span class="rag-pill green"><span class="dot"></span>On track</span>
+                        </td>
+                        <td><a href="student-detail.html" class="row-link">View →</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <div class="student-avatar">RK</div>
+                                <div>
+                                    <div class="student-name">Rohan Kulkarni</div>
+                                    <div class="student-id">STU-10247</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>B.Tech CSE</td>
+                        <td>61%</td>
+                        <td>5.2</td>
+                        <td>
+                            <span class="rag-pill red"><span class="dot"></span>At risk</span>
+                        </td>
+                        <td><a href="student-detail.html" class="row-link">View →</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <div class="student-avatar">PS</div>
+                                <div>
+                                    <div class="student-name">Priya Sharma</div>
+                                    <div class="student-id">STU-10255</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>B.Tech IT</td>
+                        <td>78%</td>
+                        <td>6.9</td>
+                        <td>
+                            <span class="rag-pill amber"><span class="dot"></span>Watch</span>
+                        </td>
+                        <td><a href="student-detail.html" class="row-link">View →</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <div class="student-avatar">JM</div>
+                                <div>
+                                    <div class="student-name">Jordan Mathew</div>
+                                    <div class="student-id">STU-10262</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>B.Tech CSE</td>
+                        <td>88%</td>
+                        <td>7.8</td>
+                        <td>
+                            <span class="rag-pill green"><span class="dot"></span>On track</span>
+                        </td>
+                        <td><a href="student-detail.html" class="row-link">View →</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <div class="student-avatar">SN</div>
+                                <div>
+                                    <div class="student-name">Sana Nair</div>
+                                    <div class="student-id">STU-10271</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>B.Tech ECE</td>
+                        <td>54%</td>
+                        <td>4.6</td>
+                        <td>
+                            <span class="rag-pill red"><span class="dot"></span>At risk</span>
+                        </td>
+                        <td><a href="student-detail.html" class="row-link">View →</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <div class="student-avatar">DV</div>
+                                <div>
+                                    <div class="student-name">Dev Varma</div>
+                                    <div class="student-id">STU-10288</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>B.Tech IT</td>
+                        <td>83%</td>
+                        <td>7.1</td>
+                        <td>
+                            <span class="rag-pill amber"><span class="dot"></span>Watch</span>
+                        </td>
+                        <td><a href="student-detail.html" class="row-link">View →</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <div class="student-avatar">LF</div>
+                                <div>
+                                    <div class="student-name">Liya Fernandes</div>
+                                    <div class="student-id">STU-10294</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>B.Tech CSE</td>
+                        <td>95%</td>
+                        <td>9.0</td>
+                        <td>
+                            <span class="rag-pill green"><span class="dot"></span>On track</span>
+                        </td>
+                        <td><a href="student-detail.html" class="row-link">View →</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
