@@ -17,15 +17,15 @@ EduTrack – Student Performance & Dropout Risk Predictor
 
 | Login | Reports |
 |---|---|
-| ![Login page](screenshots/login.png) | ![Reports page](screenshots/reports.png) |
+| ![Login page](https://github.com/Rancor06/Salman-Inten-Projects/blob/556bf8b39ac7289eeb50a5b2d53fff310fe66bc2/Phase%203/Day%2024/Screenshots/Login.png) | ![Reports page](https://github.com/Rancor06/Salman-Inten-Projects/blob/556bf8b39ac7289eeb50a5b2d53fff310fe66bc2/Phase%203/Day%2024/Screenshots/Report.png) |
 
 | Settings | Student Register (Real Data) |
 |---|---|
-| ![Settings page](screenshots/settings.png) | ![Student register page](screenshots/students.png) |
+| ![Settings page](https://github.com/Rancor06/Salman-Inten-Projects/blob/556bf8b39ac7289eeb50a5b2d53fff310fe66bc2/Phase%203/Day%2024/Screenshots/Settings.png) | ![Student register page](https://github.com/Rancor06/Salman-Inten-Projects/blob/556bf8b39ac7289eeb50a5b2d53fff310fe66bc2/Phase%203/Day%2024/Screenshots/Student_list.png) |
 
 | Dashboard (Updated Stats) | |
 |---|---|
-| ![Dashboard page](screenshots/dashboard.png) | |
+| ![Dashboard page](https://github.com/Rancor06/Salman-Inten-Projects/blob/556bf8b39ac7289eeb50a5b2d53fff310fe66bc2/Phase%203/Day%2024/Screenshots/Dashboard.png) | |
 
 ## Brief Explanation of Implemented Features
 
