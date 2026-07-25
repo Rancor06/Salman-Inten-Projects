@@ -44,15 +44,15 @@ To design and build the teacher-facing frontend for EduTrack — a dashboard tha
 
 | Login | Dashboard |
 |---|---|
-| ![Login page](Phase 3/Day 25/Screenshots/login.png) | ![Dashboard page](https://github.com/Rancor06/Salman-Inten-Projects/blob/150d8cde013ae1cdc1b686acf94b11b698ec16a5/Phase%203/Day%2025/Screenshots/dashboard.png) |
+| ![Login page](https://github.com/Rancor06/Salman-Inten-Projects/blob/f8464602d7f379943b720368d7a62fcd2e2a5c38/Phase%203/Day%2025/Screenshots/login.png) | ![Dashboard page](https://github.com/Rancor06/Salman-Inten-Projects/blob/150d8cde013ae1cdc1b686acf94b11b698ec16a5/Phase%203/Day%2025/Screenshots/dashboard.png) |
 
 | Student Register | Student Detail |
 |---|---|
-| ![Students page](Phase 3/Day 25/Screenshots/students.png) | ![Student detail page](Phase 3/Day 25/Screenshots/student-detail.png) |
+| ![Students page](https://github.com/Rancor06/Salman-Inten-Projects/blob/f8464602d7f379943b720368d7a62fcd2e2a5c38/Phase%203/Day%2025/Screenshots/students.png) | ![Student detail page](https://github.com/Rancor06/Salman-Inten-Projects/blob/f8464602d7f379943b720368d7a62fcd2e2a5c38/Phase%203/Day%2025/Screenshots/student-detail.png) |
 
 | Reports | Settings |
 |---|---|
-| ![Reports page](Phase 3/Day 25/Screenshots/reports.png) | ![Settings page](Phase 3/Day 25/Screenshots/settings.png) |
+| ![Reports page](https://github.com/Rancor06/Salman-Inten-Projects/blob/f8464602d7f379943b720368d7a62fcd2e2a5c38/Phase%203/Day%2025/Screenshots/reports.png) | ![Settings page](https://github.com/Rancor06/Salman-Inten-Projects/blob/f8464602d7f379943b720368d7a62fcd2e2a5c38/Phase%203/Day%2025/Screenshots/settings.png) |
 
 ## Challenges Faced
 
