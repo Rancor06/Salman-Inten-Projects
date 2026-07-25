@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Students — EduTrack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="edutrack.css">
+</head>
+<body>
+
+<div class="app">
+
+    <nav class="sidebar">
+        <div class="brand-mark">
+            <div class="glyph">ET</div>
+            <div class="name">EduTrack</div>
+        </div>
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="sidebar-nav" id="sidebarNav">
+            <a href="dashboard.html"><span class="dot"></span>Dashboard</a>
+            <a href="students.html" class="active"><span class="dot"></span>Students</a>
+            <a href="reports.html"><span class="dot"></span>Reports</a>
+            <a href="settings.html"><span class="dot"></span>Settings</a>
+        </div>
+        <div class="sidebar-foot">
+            Ms. Rao<br>
+            Computer Science · Sem 3
+        </div>
+    </nav>
+
+    <main class="main">
+
+        <div class="topbar">
+            <div>
+                <span class="eyebrow">Cohort · CS-2026-A</span>
+                <h1>Student Register</h1>
+                <p class="sub">10 students sampled from the real UCI dropout-risk dataset — this table will pull live from the database once the backend is built in Module 4.</p>
+            </div>
+            <a href="login.html" class="btn btn-ghost">Sign out</a>
+        </div>
+
+        <div class="panel">
+            <div class="panel-head">
+                <h2>All students</h2>
+                <div class="search-box">
+                    <span>&#128269;</span>
+                    <input type="text" id="studentSearch" placeholder="Search by name or ID…">
+                </div>
+            </div>
+
+            <table id="studentTable">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Course</th>
+                        <th>1st sem. completion</th>
+                        <th>Avg. grade (0–20)</th>
+                        <th>Risk status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <div class="student-avatar">AI</div>
+                                <div>
+                                    <div class="student-name">Ananya Iyer</div>
+                                    <div class="student-id">STU-03706</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Management</td>
+                        <td>100%</td>
+                        <td>11.2</td>
+                        <td><span class="rag-pill green"><span class="dot"></span>On track</span></td>
+                        <td><a href="student-detail.html" class="row-link">View →</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <div class="student-avatar">MP</div>
+                                <div>
+                                    <div class="student-name">Meera Pillai</div>
+                                    <div class="student-id">STU-03010</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Veterinary Nursing</td>
+                        <td>100%</td>
+                        <td>14.4</td>
+                        <td><span class="rag-pill green"><span class="dot"></span>On track</span></td>
+                        <td><a href="student-detail.html" class="row-link">View →</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <div class="student-avatar">KM</div>
+                                <div>
+                                    <div class="student-name">Kavya Menon</div>
+                                    <div class="student-id">STU-02991</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Nursing</td>
+                        <td>87.5%</td>
+                        <td>11.8</td>
+                        <td><span class="rag-pill green"><span class="dot"></span>On track</span></td>
+                        <td><a href="student-detail.html" class="row-link">View →</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <div class="student-avatar">DK</div>
+                                <div>
+                                    <div class="student-name">Diya Kapoor</div>
+                                    <div class="student-id">STU-00475</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Advertising &amp; Marketing Mgmt</td>
+                        <td>80%</td>
+                        <td>12.2</td>
+                        <td><span class="rag-pill green"><span class="dot"></span>On track</span></td>
+                        <td><a href="student-detail.html" class="row-link">View →</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <div class="student-avatar">SR</div>
+                                <div>
+                                    <div class="student-name">Sneha Reddy</div>
+                                    <div class="student-id">STU-04329</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Social Service</td>
+                        <td>83.3%</td>
+                        <td>11.8</td>
+                        <td><span class="rag-pill green"><span class="dot"></span>On track</span></td>
+                        <td><a href="student-detail.html" class="row-link">View →</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <div class="student-avatar">PS</div>
+                                <div>
+                                    <div class="student-name">Priya Sharma</div>
+                                    <div class="student-id">STU-00115</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Nursing</td>
+                        <td>85.7%</td>
+                        <td>12.3</td>
+                        <td><span class="rag-pill amber"><span class="dot"></span>Watch</span></td>
+                        <td><a href="student-detail.html" class="row-link">View →</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <div class="student-avatar">DV</div>
+                                <div>
+                                    <div class="student-name">Dev Varma</div>
+                                    <div class="student-id">STU-00109</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Basic Education</td>
+                        <td>85.7%</td>
+                        <td>12.3</td>
+                        <td><span class="rag-pill amber"><span class="dot"></span>Watch</span></td>
+                        <td><a href="student-detail.html" class="row-link">View →</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <div class="student-avatar">RK</div>
+                                <div>
+                                    <div class="student-name">Rohan Kulkarni</div>
+                                    <div class="student-id">STU-03723</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Informatics Engineering</td>
+                        <td>20%</td>
+                        <td>11.3</td>
+                        <td><span class="rag-pill red"><span class="dot"></span>At risk</span></td>
+                        <td><a href="student-detail.html" class="row-link">View →</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <div class="student-avatar">SN</div>
+                                <div>
+                                    <div class="student-name">Sana Nair</div>
+                                    <div class="student-id">STU-01510</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Tourism</td>
+                        <td>0%</td>
+                        <td>—</td>
+                        <td><span class="rag-pill red"><span class="dot"></span>At risk</span></td>
+                        <td><a href="student-detail.html" class="row-link">View →</a></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="student-cell">
+                                <div class="student-avatar">AD</div>
+                                <div>
+                                    <div class="student-name">Arjun Das</div>
+                                    <div class="student-id">STU-01190</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>Equinculture</td>
+                        <td>0%</td>
+                        <td>—</td>
+                        <td><span class="rag-pill red"><span class="dot"></span>At risk</span></td>
+                        <td><a href="student-detail.html" class="row-link">View →</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p class="chart-note" style="margin-top:0.8rem;">
+            Rows sampled from the actual UCI dropout-risk dataset (5 Graduate, 2 Enrolled, 3 Dropout) — names are placeholders attached to real feature values, since the source data is anonymized. "1st sem. completion" is a real derived field (units approved ÷ units enrolled); the dataset has no attendance figure.
+        </p>
+
+    </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
