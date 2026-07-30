@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rohan Kulkarni — EduTrack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="edutrack.css">
+</head>
+<body>
+
+<div class="app">
+
+    <nav class="sidebar">
+        <div class="brand-mark">
+            <div class="glyph">ET</div>
+            <div class="name">EduTrack</div>
+        </div>
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="sidebar-nav" id="sidebarNav">
+            <a href="dashboard.html"><span class="dot"></span>Dashboard</a>
+            <a href="students.html" class="active"><span class="dot"></span>Students</a>
+            <a href="reports.html"><span class="dot"></span>Reports</a>
+            <a href="settings.html"><span class="dot"></span>Settings</a>
+        </div>
+        <div class="sidebar-foot">
+            Ms. Rao<br>
+            Computer Science · Sem 3
+        </div>
+    </nav>
+
+    <main class="main">
+
+        <a href="students.html" class="row-link" style="display:inline-block;margin-bottom:1.2rem;font-size:0.82rem;">← Back to register</a>
+
+        <div class="detail-head">
+            <div class="detail-avatar">RK</div>
+            <div>
+                <h1 style="font-size:1.4rem;">Rohan Kulkarni</h1>
+                <div class="detail-meta">STU-03723 · Informatics Engineering</div>
+            </div>
+            <div style="margin-left:auto;">
+                <span class="rag-pill red" style="font-size:0.85rem;padding:0.5em 1em;"><span class="dot"></span>At risk</span>
+            </div>
+        </div>
+
+        <div class="detail-grid">
+
+            <div>
+                <div class="card">
+                    <h2>Academic record</h2>
+                    <div class="metric-row"><span class="k">Admission grade</span><span class="v">130.4 / 200</span></div>
+                    <div class="metric-row"><span class="k">1st sem. units enrolled</span><span class="v">5</span></div>
+                    <div class="metric-row"><span class="k">1st sem. units approved</span><span class="v">1</span></div>
+                    <div class="metric-row"><span class="k">2nd sem. units approved</span><span class="v">3 of 5</span></div>
+                    <div class="metric-row"><span class="k">Average grade</span><span class="v">11.3 / 20</span></div>
+                    <div class="metric-row"><span class="k">1st sem. completion</span><span class="v">20%</span></div>
+                </div>
+
+                <div class="card">
+                    <h2>Teacher notes</h2>
+                    <textarea class="note-input" placeholder="Add an observation or intervention note…">Missed two consecutive weeks in Feb. Reached out — cited a part-time job conflict. Referred to academic counselor on Mar 3.</textarea>
+                    <button class="btn btn-primary" style="margin-top:0.8rem;">Save note</button>
+                </div>
+            </div>
+
+            <div>
+                <div class="card">
+                    <h2>Risk drivers</h2>
+                    <p class="detail-meta" style="margin-bottom:1rem;">Top features behind this prediction, from the dropout-risk model's feature importance ranking.</p>
+
+                    <div class="factor">
+                        <div class="factor-label"><span class="name">1st sem. units approved</span><span class="weight">high impact</span></div>
+                        <div class="factor-bar"><span style="width:88%;"></span></div>
+                    </div>
+                    <div class="factor">
+                        <div class="factor-label"><span class="name">Admission grade</span><span class="weight">high impact</span></div>
+                        <div class="factor-bar"><span style="width:71%;"></span></div>
+                    </div>
+                    <div class="factor">
+                        <div class="factor-label"><span class="name">Attendance rate</span><span class="weight">medium impact</span></div>
+                        <div class="factor-bar"><span style="width:58%;"></span></div>
+                    </div>
+                    <div class="factor">
+                        <div class="factor-label"><span class="name">Tuition fees up to date</span><span class="weight">low impact</span></div>
+                        <div class="factor-bar"><span style="width:23%;"></span></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Enrollment</h2>
+                    <div class="metric-row"><span class="k">Marital status</span><span class="v">Single</span></div>
+                    <div class="metric-row"><span class="k">Scholarship holder</span><span class="v">No</span></div>
+                    <div class="metric-row"><span class="k">Debtor</span><span class="v">Yes</span></div>
+                    <div class="metric-row"><span class="k">Tuition up to date</span><span class="v">Yes</span></div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <footer class="app-footer">
+            <div class="footer-brand">
+                <div class="glyph">ET</div>
+                <div>
+                    <div class="name">EduTrack</div>
+                    <div class="tagline">Student risk tracking for CS-2026-A</div>
+                </div>
+            </div>
+            <nav class="footer-links">
+                <a href="dashboard.html">Dashboard</a>
+                <a href="students.html" style="color:#fff;">Students</a>
+                <a href="reports.html">Reports</a>
+                <a href="settings.html">Settings</a>
+            </nav>
+            <div class="footer-contact">
+                <a href="mailto:support@edutrack.app">support@edutrack.app</a>
+                <span>© 2026 EduTrack — Innolift Ventures capstone</span>
+            </div>
+        </footer>
+
+    </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

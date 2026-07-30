@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign in — EduTrack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="edutrack.css">
+</head>
+<body>
+
+<div class="login-shell">
+
+    <aside class="login-side">
+        <div class="brand-mark">
+            <div class="glyph">ET</div>
+            <div class="name">EduTrack</div>
+        </div>
+
+        <div>
+            <p class="quote">"Catching a dropout risk in week three beats catching it in semester three."</p>
+            <p class="quote-attr">— what this dashboard is for</p>
+        </div>
+
+        <div class="rag-key">
+            <span><span class="dot" style="background:#4ADE80;"></span>On track</span>
+            <span><span class="dot" style="background:#FBBF24;"></span>Watch</span>
+            <span><span class="dot" style="background:#F87171;"></span>At risk</span>
+        </div>
+    </aside>
+
+    <main class="login-main">
+        <div class="login-card">
+            <h1>Sign in</h1>
+            <p class="sub">Teacher access to student risk records.</p>
+
+            <form onsubmit="event.preventDefault(); window.location.href='dashboard.html';">
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" placeholder="you@school.edu" required>
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
+
+            <p class="login-foot">Demo build — any email/password continues to the dashboard.</p>
+        </div>
+    </main>
+
+</div>
+
+</body>
+</html>
