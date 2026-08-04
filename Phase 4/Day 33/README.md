@@ -86,12 +86,15 @@ Navigate between the **Home**, **About**, **Projects**, and **Contact** pages us
 | Home | 
 |---|
 | ![Home page](https://github.com/Rancor06/Salman-Inten-Projects/blob/5e2f4783c55bc5200210b33a3f19eab7d90e2d59/Phase%204/Day%2033/Screenshots/Home.png) | 
+
 | About |
 |---|
 | ![About page](https://github.com/Rancor06/Salman-Inten-Projects/blob/5e2f4783c55bc5200210b33a3f19eab7d90e2d59/Phase%204/Day%2033/Screenshots/About.png) |
+
 | Projects |
 |---|
 | ![Projects page](https://github.com/Rancor06/Salman-Inten-Projects/blob/5e2f4783c55bc5200210b33a3f19eab7d90e2d59/Phase%204/Day%2033/Screenshots/Projects.png) |
+
 | Contact |
 |---|
 | ![Contact page](https://github.com/Rancor06/Salman-Inten-Projects/blob/5e2f4783c55bc5200210b33a3f19eab7d90e2d59/Phase%204/Day%2033/Screenshots/Contact.png) |
