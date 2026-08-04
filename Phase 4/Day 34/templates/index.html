@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 34 - Projects REST API</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>📡 Projects REST API</h1>
+        <p>A simple in-memory REST API built with Flask — Day 34 Internship Task</p>
+    </header>
+
+    <main>
+        <h2>Available Endpoints</h2>
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Endpoint</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td class="get">GET</td>
+                <td>/projects</td>
+                <td>Get all projects</td>
+            </tr>
+            <tr>
+                <td class="get">GET</td>
+                <td>/projects/&lt;id&gt;</td>
+                <td>Get a single project by id</td>
+            </tr>
+            <tr>
+                <td class="post">POST</td>
+                <td>/projects</td>
+                <td>Create a new project (JSON body: title, description, tech)</td>
+            </tr>
+            <tr>
+                <td class="put">PUT</td>
+                <td>/projects/&lt;id&gt;</td>
+                <td>Update an existing project</td>
+            </tr>
+            <tr>
+                <td class="delete">DELETE</td>
+                <td>/projects/&lt;id&gt;</td>
+                <td>Delete a project</td>
+            </tr>
+        </table>
+
+        <p class="note">This page is plain HTML for humans. The endpoints above return JSON, for programs.</p>
+    </main>
+
+</body>
+</html>
