@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Portfolio - Home</title>
+
+    <!-- url_for() asks Flask to build the correct URL for a static file.
+         It looks inside the 'static' folder for css/style.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+    </nav>
+
+    <main>
+        <h1>Hi, I'm a Flask Learner 👋</h1>
+        <p>Welcome to my very first Flask portfolio website.</p>
+        <p>This site was built using only Flask, HTML, and CSS.</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 My Portfolio</p>
+    </footer>
+
+</body>
+</html>

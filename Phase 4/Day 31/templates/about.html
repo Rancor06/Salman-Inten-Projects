@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Portfolio - About</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <nav>
+        <a href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('about') }}">About</a>
+        <a href="{{ url_for('contact') }}">Contact</a>
+    </nav>
+
+    <main>
+        <h1>About Me</h1>
+        <p>I'm A. Salman Maricar, a B.Tech AI &amp; Data Science student. I work on
+        Generative AI, image processing, and full-stack development.</p>
+
+        <h2>Skills</h2>
+        <ul>
+            <li>Python</li>
+            <li>Generative AI &amp; Image Processing</li>
+            <li>SQL</li>
+            <li>OCR &amp; Document Verification</li>
+        </ul>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 My Portfolio</p>
+    </footer>
+
+</body>
+</html>
