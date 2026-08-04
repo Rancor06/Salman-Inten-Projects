@@ -34,7 +34,7 @@ This project demonstrates:
 ## 📁 Project Structure
 
 ```
-flask_portfolio/
+Day_32/
 ├── app.py
 ├── data.py
 ├── templates/
