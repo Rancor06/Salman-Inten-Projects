@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Salman Maricar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Salman<span>.dev</span></div>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('projects_page') }}">Projects</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="about-card">
+            <h1>About Me</h1>
+            <p>I'm A. Salman Maricar, a B.Tech AI &amp; Data Science student with practical
+            experience building and refining Generative AI systems, including a virtual
+            try-on model. I'm proficient in Python, image processing, and model debugging,
+            with strong analytical skills developed through real-world project work.</p>
+
+            <h2>Skills</h2>
+            <ul>
+                <li>Python programming (intermediate)</li>
+                <li>Generative AI &amp; image processing/masking</li>
+                <li>Model debugging &amp; performance optimization</li>
+                <li>C programming, SQL basics</li>
+                <li>OCR &amp; document verification systems</li>
+            </ul>
+
+            <h2>Education</h2>
+            <ul>
+                <li>B.Tech, AI &amp; Data Science &mdash; B. S. Abdur Rahman Crescent
+                    University, Chennai (Ongoing, CGPA 8.9)</li>
+                <li>Grade 12 &mdash; Cauvery Public School, Karaikal (2024, 80%)</li>
+                <li>Grade 10 &mdash; Cauvery Public School, Karaikal (2022, 81%)</li>
+            </ul>
+
+            <h2>Experience</h2>
+            <ul>
+                <li><strong>Full Stack AI Developer</strong>, Innolift Ventures, Chennai
+                    &mdash; 2 months</li>
+                <li><strong>AI Developer</strong>, Genesys Research &amp; AI Labs (grail),
+                    Puducherry &mdash; 2 weeks</li>
+            </ul>
+
+            <h2>Publications</h2>
+            <ul>
+                <li>A. S. Maricar, "AI-Powered IoT Security: Multi-Dataset Evaluation of a
+                    Deep Learning Intrusion Detection Framework," 2025 IEEE International
+                    Carnahan Conference on Security Technology (ICCST), San Antonio, TX,
+                    USA, 2025, pp. 1&ndash;6.</li>
+            </ul>
+
+            <h2>Languages</h2>
+            <ul>
+                <li>English, Tamil, Hindi, Japanese</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-socials">
+            <a href="https://github.com/Rancor06" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="mailto:salmanamaricar@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+        <p>&copy; 2026 Salman Maricar. Built with Flask.</p>
+    </footer>
+
+</body>
+</html>

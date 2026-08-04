@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salman Maricar - Portfolio</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Font Awesome via CDN - gives us icon classes like <i class="fa-solid fa-code">
+         This is just a CSS + font-file stylesheet, no JavaScript needed to use it. -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Salman<span>.dev</span></div>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('projects_page') }}">Projects</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <p class="greeting">Hi, my name is</p>
+        <h1>Salman Maricar</h1>
+        <p>AI &amp; Data Science student building Generative AI systems and full-stack
+           web applications with Flask, Python, and modern web technologies.</p>
+        <a href="{{ url_for('projects_page') }}" class="btn">View My Projects</a>
+    </header>
+
+    <!-- SKILLS SECTION -->
+    <section class="section">
+        <h2 class="section-title">Skills</h2>
+        <p class="section-subtitle">Technologies and tools I work with</p>
+
+        <div class="skills-grid">
+            <div class="skill-card">
+                <i class="fa-brands fa-python"></i>
+                <p>Python</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-flask"></i>
+                <p>Flask</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-robot"></i>
+                <p>Generative AI</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-database"></i>
+                <p>SQL</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-brands fa-html5"></i>
+                <p>HTML &amp; CSS</p>
+            </div>
+            <div class="skill-card">
+                <i class="fa-solid fa-eye"></i>
+                <p>OCR &amp; Vision</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-socials">
+            <a href="https://github.com/Rancor06" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="mailto:salmanamaricar@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+        <p>&copy; 2026 Salman Maricar. Built with Flask.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Salman Maricar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Salman<span>.dev</span></div>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('projects_page') }}">Projects</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+        </div>
+    </nav>
+
+    <section class="section">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">Generated dynamically from data.py using Jinja2</p>
+
+        <div class="projects-grid">
+            <!-- The for-loop below runs once PER project in the 'projects'
+                 list passed in from app.py — one card is generated for
+                 every dictionary in the list. No project card is
+                 hardcoded here; add a new dict in data.py and a new
+                 card appears automatically, with zero HTML changes. -->
+            {% for project in projects %}
+            <div class="project-card">
+                <!-- Double curly braces output a value. project.icon pulls
+                     the "icon" key out of THIS loop iteration's dictionary. -->
+                <i class="{{ project.icon }}"></i>
+                <h3>{{ project.title }}</h3>
+                <p>{{ project.description }}</p>
+                <p class="project-tech">{{ project.tech }}</p>
+                <a href="{{ project.link }}" target="_blank">View on GitHub &rarr;</a>
+            </div>
+            {% endfor %}
+            <!-- endfor closes the loop — required, just like Python
+                 needs indentation to know where a for-loop body ends. -->
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-socials">
+            <a href="https://github.com/Rancor06" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="mailto:salmanamaricar@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        </div>
+        <p>&copy; 2026 Salman Maricar. Built with Flask.</p>
+    </footer>
+
+</body>
+</html>
