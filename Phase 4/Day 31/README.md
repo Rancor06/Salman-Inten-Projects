@@ -82,9 +82,11 @@ Navigate between the **Home**, **About**, and **Contact** pages using the naviga
 | Home | 
 |---|
 | ![Home page](https://github.com/Rancor06/Salman-Inten-Projects/blob/ca6074fcb6f151ce8c57682e9dd05524e7e8ef8c/Phase%204/Day%2031/Screenshots/Home.png) | 
+
 | About |
 |---|
 | ![About page](https://github.com/Rancor06/Salman-Inten-Projects/blob/ca6074fcb6f151ce8c57682e9dd05524e7e8ef8c/Phase%204/Day%2031/Screenshots/About.png) |
+
 | Contact |
 |---|
 | ![Contact page](https://github.com/Rancor06/Salman-Inten-Projects/blob/ca6074fcb6f151ce8c57682e9dd05524e7e8ef8c/Phase%204/Day%2031/Screenshots/Contact.png) |
