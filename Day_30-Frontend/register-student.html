@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Registration · EduTrack</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="register-student.css" />
+</head>
+<body>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toast">
+    <span class="toast-dot"></span>
+    <span>Record registered successfully!</span>
+  </div>
+
+  <div class="layout">
+
+    <!-- Sidebar: student file cover -->
+    <aside class="sidebar">
+      <div class="sidebar-tab"><span>FILE</span></div>
+      <div class="sidebar-inner">
+
+        <div class="sidebar-brand">
+          <div class="brand-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+              <path d="M12 3L2 8l10 5 10-5-10-5z"/>
+              <path d="M6 10.5V16c0 1.5 2.5 3 6 3s6-1.5 6-3v-5.5"/>
+            </svg>
+          </div>
+          <div>
+            <div class="brand-name">EduTrack</div>
+            <div class="brand-tag">Dropout Risk System</div>
+          </div>
+        </div>
+
+        <div class="record-stamp">
+          <div class="avatar-placeholder">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.5-6 8-6s8 2 8 6"/></svg>
+          </div>
+          <div class="stamp-label">Record No.</div>
+          <div class="stamp-value">REC—2026-XXXX</div>
+        </div>
+
+        <ul class="checklist">
+          <li><span class="num">1</span> Personal Information</li>
+          <li><span class="num">2</span> Contact Information</li>
+          <li><span class="num">3</span> Academic Details</li>
+          <li><span class="num">4</span> Account Setup</li>
+        </ul>
+
+        <div class="sidebar-footer">
+          Form 01 — Registration<br>
+          Academic Year 2026–27
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- Content: document flow -->
+    <main class="content">
+
+      <a href="students.html" class="back-link">&larr; Back to student register</a>
+
+      <div class="intro">
+        <h1>Register a student record</h1>
+        <p>Enter personal, contact, and academic details. This record feeds the dropout-risk model — accuracy in the academic fields matters most.</p>
+      </div>
+
+      <form id="regForm" novalidate>
+
+        <!-- Section 1: Personal Information -->
+        <section class="doc-section" style="border-top:none; padding-top:0;">
+          <span class="doc-index">01</span>
+          <div>
+            <div class="doc-heading">
+              <h2>Personal Information</h2>
+            </div>
+            <div class="grid-2">
+
+              <div class="field">
+                <label for="fullName">Full Name <span class="req">*</span></label>
+                <input type="text" id="fullName" name="fullName" autocomplete="name" placeholder="Letters and spaces only" />
+                <span class="err-msg" id="fullNameErr"></span>
+              </div>
+
+              <div class="field">
+                <label for="dob">Date of Birth <span class="req">*</span></label>
+                <input type="date" id="dob" name="dob" autocomplete="bday" />
+                <span class="err-msg" id="dobErr"></span>
+              </div>
+
+              <div class="field full">
+                <label id="genderLabel">Gender <span class="req">*</span></label>
+                <div class="radio-group" role="radiogroup" aria-labelledby="genderLabel">
+                  <label><input type="radio" name="gender" value="male" /> Male</label>
+                  <label><input type="radio" name="gender" value="female" /> Female</label>
+                  <label><input type="radio" name="gender" value="other" /> Other</label>
+                </div>
+                <span class="err-msg" id="genderErr"></span>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 2: Contact Information -->
+        <section class="doc-section">
+          <span class="doc-index">02</span>
+          <div>
+            <div class="doc-heading">
+              <h2>Contact Information</h2>
+            </div>
+            <div class="grid-2">
+
+              <div class="field">
+                <label for="email">Email Address <span class="req">*</span></label>
+                <input type="email" id="email" name="email" autocomplete="email" placeholder="you@college.edu" />
+                <span class="err-msg" id="emailErr"></span>
+              </div>
+
+              <div class="field">
+                <label for="phone">Phone Number <span class="req">*</span></label>
+                <input type="tel" id="phone" name="phone" maxlength="10" placeholder="10-digit mobile" />
+                <span class="err-msg" id="phoneErr"></span>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 3: Academic Details — Transcript Strip -->
+        <section class="doc-section">
+          <span class="doc-index">03</span>
+          <div>
+            <div class="doc-heading">
+              <h2>Academic Details</h2>
+              <p>Used by the risk model</p>
+            </div>
+            <div class="transcript">
+              <div class="transcript-header">
+                <h3>Transcript record</h3>
+                <span>Semester data</span>
+              </div>
+              <div class="transcript-body">
+                <div class="transcript-row">
+
+                  <div class="field">
+                    <label for="rollNo">Roll Number <span class="req">*</span></label>
+                    <input type="text" id="rollNo" name="rollNo" placeholder="e.g. CS2026-041" />
+                    <span class="err-msg" id="rollNoErr"></span>
+                  </div>
+
+                  <div class="field">
+                    <label for="course">Course / Dept <span class="req">*</span></label>
+                    <select id="course" name="course">
+                      <option value="" disabled selected>Select…</option>
+                      <option>Computer Science</option>
+                      <option>Information Technology</option>
+                      <option>Electronics</option>
+                      <option>Mechanical</option>
+                      <option>Civil</option>
+                      <option>Commerce</option>
+                      <option>Arts</option>
+                    </select>
+                    <span class="err-msg" id="courseErr"></span>
+                  </div>
+
+                  <div class="field">
+                    <label for="semester">Semester <span class="req">*</span></label>
+                    <select id="semester" name="semester">
+                      <option value="" disabled selected>Select…</option>
+                      <option>1</option><option>2</option><option>3</option>
+                      <option>4</option><option>5</option><option>6</option>
+                      <option>7</option><option>8</option>
+                    </select>
+                    <span class="err-msg" id="semesterErr"></span>
+                  </div>
+
+                  <div class="field">
+                    <label for="attendance">Attendance % <span class="req">*</span></label>
+                    <input type="number" id="attendance" name="attendance" min="0" max="100" step="0.1" placeholder="0–100" />
+                    <span class="err-msg" id="attendanceErr"></span>
+                  </div>
+
+                  <div class="field">
+                    <label for="gpa">Previous GPA <span class="req">*</span></label>
+                    <input type="number" id="gpa" name="gpa" min="0" max="10" step="0.01" placeholder="0.00–10.00" />
+                    <span class="err-msg" id="gpaErr"></span>
+                  </div>
+
+                  <div class="field">
+                    <label for="backlogs">Active Backlogs <span class="hint">optional</span></label>
+                    <input type="number" id="backlogs" name="backlogs" min="0" step="1" placeholder="0" />
+                    <span class="err-msg" id="backlogsErr"></span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Account Setup -->
+        <section class="doc-section">
+          <span class="doc-index">04</span>
+          <div>
+            <div class="doc-heading">
+              <h2>Account Setup</h2>
+            </div>
+            <div class="grid-2">
+
+              <div class="field">
+                <label for="password">Password <span class="req">*</span></label>
+                <input type="password" id="password" name="password" autocomplete="new-password" placeholder="Min 8 characters" />
+                <div class="pw-meter">
+                  <span id="pb1"></span><span id="pb2"></span><span id="pb3"></span><span id="pb4"></span>
+                </div>
+                <div class="pw-strength-label" id="pwStrengthLabel"></div>
+                <span class="err-msg" id="passwordErr"></span>
+              </div>
+
+              <div class="field">
+                <label for="confirmPw">Confirm Password <span class="req">*</span></label>
+                <input type="password" id="confirmPw" name="confirmPw" autocomplete="new-password" />
+                <span class="err-msg" id="confirmPwErr"></span>
+              </div>
+
+            </div>
+          </div>
+        </section>
+
+        <div class="doc-footer">
+          <button type="submit" class="btn-primary" id="submitBtn">Register student record</button>
+          <p>Fields marked <span class="req">*</span> are required. Validation is enforced in Task 02.</p>
+        </div>
+
+      </form>
+
+    </main>
+
+  </div><!-- /.layout -->
+
+  <script src="register-student.js"></script>
+</body>
+</html>
