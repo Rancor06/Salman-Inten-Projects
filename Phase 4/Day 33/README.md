@@ -34,7 +34,7 @@ This project demonstrates:
 ## 📁 Project Structure
 
 ```
-Day_32/
+Day_33/
 ├── app.py
 ├── data.py
 ├── templates/
