@@ -1,0 +1,15 @@
+{
+  "name": "day32-express-project",
+  "version": "1.0.0",
+  "description": "Day 32 Internship Task - Node.js and Express basics",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
