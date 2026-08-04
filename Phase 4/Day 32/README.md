@@ -87,13 +87,15 @@ Navigate between the **Home**, **About**, and **Contact** pages using the naviga
 
 | Home | 
 |---|
-| ![Home page](PASTE_LINK_HERE) | 
+| ![Home page](https://github.com/Rancor06/Salman-Inten-Projects/blob/b0b720aec4814f831d6e9904bd7131c8111ff850/Phase%204/Day%2032/Screenshots/Home.png) | 
+
 | About |
 |---|
-| ![About page](PASTE_LINK_HERE) |
+| ![About page](https://github.com/Rancor06/Salman-Inten-Projects/blob/b0b720aec4814f831d6e9904bd7131c8111ff850/Phase%204/Day%2032/Screenshots/About.png) |
+
 | Contact |
 |---|
-| ![Contact page](PASTE_LINK_HERE) |
+| ![Contact page](https://github.com/Rancor06/Salman-Inten-Projects/blob/b0b720aec4814f831d6e9904bd7131c8111ff850/Phase%204/Day%2032/Screenshots/Contact.png) |
 
 ## 📚 Learning Outcomes
 
