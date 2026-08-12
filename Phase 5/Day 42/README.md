@@ -100,7 +100,7 @@ Form (useState per field)
 ## Submission Checklist
 
 - [x] Flask POST API created
-- [ ] API tested successfully in Postman
+- [x] API tested successfully in Postman
 - [x] React form created with controlled inputs
 - [x] `useState()` used for form values
 - [x] `onSubmit` and `onChange` implemented
@@ -110,5 +110,5 @@ Form (useState per field)
 - [x] Success message displayed
 - [x] Form fields cleared after success
 - [x] New student added without page refresh
-- [ ] Project pushed to GitHub
-- [ ] GitHub repository/link submitted
+- [x] Project pushed to GitHub
+- [x] GitHub repository/link submitted
