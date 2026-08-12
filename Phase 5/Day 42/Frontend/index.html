@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EduTrack — Catch dropout risk before it becomes a dropout</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="edutrack.css">
+<style>
+  html { scroll-behavior: smooth; }
+  body { -webkit-font-smoothing: antialiased; }
+  h1,h2,h3 { font-family: var(--font-display); }
+
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+
+  /* ---------- NAVBAR ---------- */
+  .navbar {
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 20px 48px;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    position: sticky; top: 0; z-index: 50;
+  }
+  .brand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:19px; font-family: var(--font-display); color: var(--ink); }
+  .brand-mark {
+    width:34px; height:34px; border-radius:10px;
+    background: linear-gradient(135deg, var(--brand), var(--violet));
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-weight:800; letter-spacing:.5px;
+  }
+
+  .login-dropdown { position: relative; }
+  .signin-btn {
+    display:flex; align-items:center; gap:8px;
+    background: linear-gradient(135deg, var(--brand), #6d5aea);
+    color:#fff; border:none; padding:11px 20px; border-radius:12px;
+    font-size:14.5px; font-weight:600; font-family: var(--font-body);
+    box-shadow: 0 8px 18px -6px rgba(91,78,224,.55);
+  }
+  .signin-btn svg { width:16px; height:16px; }
+  .login-menu {
+    position:absolute; right:0; top:calc(100% + 10px); min-width:190px;
+    background:#fff; border:1px solid var(--line); border-radius: var(--radius-md);
+    box-shadow: var(--shadow); overflow:hidden; display:none; z-index:20;
+  }
+  .login-menu.open { display:block; }
+  .login-menu a {
+    display:flex; align-items:center; gap:8px; padding:0.85rem 1.1rem;
+    font-size:0.9rem; font-weight:500; color: var(--ink); border-bottom:1px solid var(--paper);
+  }
+  .login-menu a:last-child { border-bottom:none; }
+  .login-menu a:hover { background: var(--brand-soft); }
+
+  /* ---------- HERO ---------- */
+  .hero { position:relative; padding:76px 48px 40px; overflow:hidden; }
+  .hero-grid { display:grid; grid-template-columns: 1fr 1fr; gap:40px; align-items:center; max-width:1280px; margin:0 auto; position:relative; z-index:2; }
+  .eyebrow {
+    display:inline-flex; align-items:center; gap:8px;
+    background: var(--brand-soft); color: var(--brand-dark);
+    font-size:12.5px; font-weight:700; letter-spacing:.4px;
+    padding:8px 16px; border-radius:999px; margin-bottom:26px;
+  }
+  .headline { font-size:52px; font-weight:800; line-height:1.08; letter-spacing:-1.2px; margin:0 0 4px; color: var(--ink); }
+  .headline .accent {
+    background: linear-gradient(90deg, var(--brand), var(--violet));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .underline-svg { margin:6px 0 22px; display:block; }
+  .hero-copy { font-size:16px; line-height:1.65; color: var(--ink-soft); max-width:480px; margin-bottom:34px; }
+  .hero-buttons { display:flex; gap:14px; }
+  .btn-mock { display:inline-flex; align-items:center; gap:9px; padding:14px 24px; border-radius:12px; font-size:15px; font-weight:600; border:1.5px solid transparent; font-family: var(--font-body); }
+  .btn-mock svg { width:18px; height:18px; }
+  .btn-mock-primary { background: linear-gradient(135deg, var(--brand), #6d5aea); color:#fff; box-shadow: 0 12px 24px -8px rgba(91,78,224,.5); }
+  .btn-mock-outline { background:#fff; color: var(--brand-dark); border-color:#d8d4f7; }
+  .btn-mock-outline:hover { background: var(--brand-soft); }
+
+  /* hero visual */
+  .hero-visual { position:relative; height:520px; }
+  .blob {
+    position:absolute; width:230px; height:230px; border-radius:44% 56% 60% 40% / 46% 40% 60% 54%;
+    background: radial-gradient(circle at 30% 30%, #ded8fb, #cfc6f7 70%);
+    top:20px; right:60px; opacity:.7; z-index:0;
+  }
+  .dot-grid {
+    position:absolute; top:110px; right:0; width:120px; height:120px;
+    background-image: radial-gradient(circle, #cfc9ef 1.6px, transparent 1.6px);
+    background-size:16px 16px; opacity:.8; z-index:0;
+  }
+  .dot-lone { position:absolute; width:9px; height:9px; border-radius:50%; background: var(--rag-green); left:30px; bottom:150px; z-index:1; }
+  .dashed-arc {
+    position:absolute; right:10px; bottom:60px; width:130px; height:130px;
+    border:2px dashed #c9c3ee; border-radius:50%; clip-path: inset(0 0 0 50%); opacity:.7; z-index:0;
+  }
+  .float-chip {
+    position:absolute; top:6px; right:170px; z-index:3;
+    background:#fff; border-radius:16px; padding:10px 16px;
+    box-shadow: var(--shadow-sm); border:1px solid var(--line);
+    display:flex; align-items:center; gap:10px;
+  }
+  .float-chip .ic { width:30px; height:30px; border-radius:9px; background: var(--brand-soft); display:flex; align-items:center; justify-content:center; color: var(--brand); }
+  .float-chip .label { font-size:13px; font-weight:700; display:flex; align-items:center; gap:6px; }
+  .status-dot { width:7px; height:7px; border-radius:50%; background: var(--rag-green); display:inline-block; }
+
+  .risk-card {
+    position:relative; z-index:2;
+    background:#fff; border-radius: var(--radius-lg);
+    box-shadow: var(--shadow); border:1px solid var(--line);
+    padding:26px 26px 22px; width:440px; margin-top:60px;
+  }
+  .risk-card h3 { font-size:15px; margin:0 0 4px; font-weight:700; }
+  .risk-card .risk-sub { font-size:11.5px; color: var(--ink-faint); margin-bottom:16px; }
+  .risk-row { display:flex; align-items:center; gap:24px; }
+  .donut-wrap { position:relative; width:150px; height:150px; flex-shrink:0; }
+  .donut-center { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+  .donut-center .num { font-size:22px; font-weight:800; line-height:1; }
+  .donut-center .lbl { font-size:11px; color: var(--ink-faint); margin-top:3px; text-align:center; }
+  .legend { display:flex; flex-direction:column; gap:13px; }
+  .legend-item { display:flex; align-items:center; gap:10px; font-size:13.5px; }
+  .legend-item .sw { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+  .legend-item .name { font-weight:700; min-width:64px; }
+  .legend-item .val { color: var(--ink-faint); }
+
+  .dataset-note {
+    margin-top:20px; background: var(--paper); border:1px solid var(--line);
+    border-radius: var(--radius-md); padding:14px 16px;
+    display:flex; align-items:center; gap:12px; font-size:12.5px; color: var(--ink-soft);
+  }
+  .dataset-note .ic { width:30px; height:30px; border-radius:9px; background: var(--brand-soft); color: var(--brand); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .dataset-note strong { color: var(--ink); }
+
+  .float-btn { position:absolute; z-index:3; width:44px; height:44px; border-radius:13px; display:flex; align-items:center; justify-content:center; box-shadow: var(--shadow-sm); border:1px solid rgba(0,0,0,0.03); }
+  .float-btn.bell { background:#ffdccb; color:#e8632c; top:230px; right:6px; }
+  .float-btn.chart { background: var(--brand); color:#fff; bottom:26px; right:70px; }
+
+  /* ---------- FEATURE CARDS ---------- */
+  .features { max-width:1280px; margin:56px auto 0; padding:0 48px; display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; }
+  .feature-card { background:#fff; border:1px solid var(--line); border-radius: var(--radius-md); padding:26px; position:relative; transition: box-shadow .2s, transform .2s; }
+  .feature-card:hover { box-shadow: var(--shadow-sm); transform:translateY(-2px); }
+  .feature-ic { width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
+  .feature-ic.green { background: var(--rag-green-bg); color: var(--rag-green); }
+  .feature-ic.blue { background:#e3ecfe; color:#2f6fed; }
+  .feature-ic.violet { background: var(--brand-soft); color: var(--brand); }
+  .feature-eyebrow { font-size:12.5px; font-weight:700; margin-bottom:6px; }
+  .feature-eyebrow.blue { color:#2f6fed; }
+  .feature-eyebrow.violet { color: var(--brand); }
+  .feature-eyebrow.green { color: var(--rag-green); }
+  .feature-card h4 { font-size:17.5px; margin:0 0 10px; font-weight:700; color: var(--ink); }
+  .feature-card p { font-size:14px; line-height:1.6; color: var(--ink-soft); margin:0; padding-right:20px; }
+  .feature-arrow { position:absolute; right:22px; bottom:24px; width:28px; height:28px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:14px; }
+  .feature-arrow.green { background: var(--rag-green-bg); color: var(--rag-green); }
+  .feature-arrow.blue { background:#e3ecfe; color:#2f6fed; }
+  .feature-arrow.violet { background: var(--brand-soft); color: var(--brand); }
+
+  /* ---------- STATUS BAND ---------- */
+  .status-band { max-width:1280px; margin:20px auto 0; padding:0 48px; }
+  .status-inner { background:#fff; border:1px solid var(--line); border-radius: var(--radius-lg); padding:38px 44px; display:grid; grid-template-columns:260px 1fr; gap:40px; align-items:center; }
+  .status-visual { position:relative; width:180px; height:180px; margin:0 auto; }
+  .status-shield {
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:66px; height:66px; border-radius:20px; background: linear-gradient(135deg, var(--brand), var(--violet));
+    display:flex; align-items:center; justify-content:center; color:#fff; box-shadow:var(--shadow-sm);
+  }
+  .status-visual .ring { position:absolute; border:2px solid #e6e2fb; border-radius:50%; }
+  .status-visual .ring.r1 { inset:0; }
+  .status-visual .ring.r2 { inset:26px; }
+  .status-visual .dot { position:absolute; width:11px; height:11px; border-radius:50%; }
+  .status-title { font-size:23px; font-weight:800; margin:0 0 20px; color: var(--ink); }
+  .status-cols { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+  .status-col .head { display:flex; align-items:center; gap:9px; font-weight:700; font-size:15.5px; margin-bottom:8px; }
+  .status-col .head .dot { width:9px; height:9px; border-radius:50%; }
+  .status-col p { margin:0; font-size:13.8px; color: var(--ink-soft); line-height:1.55; }
+
+  /* ---------- NOTE BAR ---------- */
+  .note-bar { max-width:1280px; margin:34px auto 0; padding:0 48px 60px; display:flex; align-items:center; justify-content:center; gap:10px; color: var(--ink-faint); font-size:14px; }
+  .note-bar svg { width:17px; height:17px; flex-shrink:0; }
+
+  @media (max-width: 980px) {
+    .navbar { padding:16px 20px; }
+    .wrap, .hero, .features, .status-band, .note-bar { padding-left:20px; padding-right:20px; }
+    .hero-grid { grid-template-columns:1fr; }
+    .hero-visual { height:auto; margin-top:20px; }
+    .headline { font-size:38px; }
+    .features { grid-template-columns:1fr; }
+    .status-inner { grid-template-columns:1fr; text-align:center; }
+    .status-cols { grid-template-columns:1fr; }
+    .risk-card { width:100%; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="brand">
+      <div class="brand-mark">ET</div>
+      EduTrack
+    </div>
+    <div class="login-dropdown" id="loginDropdown">
+      <button class="signin-btn" id="loginToggle" aria-haspopup="true" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Sign in
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="login-menu" id="loginMenu">
+        <a href="login.html?role=student">Student</a>
+        <a href="login.html?role=admin">Admin</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">&#128640; INNOLIFT VENTURES &ndash; CAPSTONE PROJECT</span>
+        <h1 class="headline">Catch dropout risk<br>before it becomes<br><span class="accent">a dropout.</span></h1>
+        <svg class="underline-svg" width="250" height="18" viewBox="0 0 250 18" fill="none">
+          <path d="M2 12 C 60 2, 190 2, 248 10" stroke="#5b4ee0" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <p class="hero-copy">
+          EduTrack tracks student attendance, grades, and engagement to flag who's on track, who needs watching, and who's at risk — early enough for a teacher to actually step in.
+          Built on a machine learning model trained on real academic outcome data.
+        </p>
+        <div class="hero-buttons">
+          <a href="login.html?role=student" class="btn-mock btn-mock-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Student login
+          </a>
+          <a href="login.html?role=admin" class="btn-mock btn-mock-outline">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Admin login
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="blob"></div>
+        <div class="dot-grid"></div>
+        <div class="dashed-arc"></div>
+        <div class="dot-lone"></div>
+
+        <div class="float-chip">
+          <div class="ic">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20z"/></svg>
+          </div>
+          <div class="label">ML Model<br>Active <span class="status-dot"></span></div>
+        </div>
+
+        <div class="risk-card">
+          <h3>Training data distribution</h3>
+          <p class="risk-sub">4,424 real student records — UCI Dropout &amp; Academic Success dataset</p>
+          <div class="risk-row">
+            <div class="donut-wrap">
+              <svg width="150" height="150" viewBox="0 0 150 150">
+                <circle cx="75" cy="75" r="58" fill="none" stroke="#eee9fc" stroke-width="16"/>
+                <!-- On track (Graduate) 49.9% -->
+                <circle cx="75" cy="75" r="58" fill="none" stroke="#22c55e" stroke-width="16"
+                  stroke-dasharray="181.9 364.4" stroke-dashoffset="0" transform="rotate(-90 75 75)" stroke-linecap="round"/>
+                <!-- Watch (Enrolled) 17.9% -->
+                <circle cx="75" cy="75" r="58" fill="none" stroke="#f59e0b" stroke-width="16"
+                  stroke-dasharray="65.2 364.4" stroke-dashoffset="-181.9" transform="rotate(-90 75 75)" stroke-linecap="round"/>
+                <!-- At risk (Dropout) 32.1% -->
+                <circle cx="75" cy="75" r="58" fill="none" stroke="#ef4444" stroke-width="16"
+                  stroke-dasharray="117.0 364.4" stroke-dashoffset="-247.1" transform="rotate(-90 75 75)" stroke-linecap="round"/>
+              </svg>
+              <div class="donut-center">
+                <div class="num">4,424</div>
+                <div class="lbl">Records</div>
+              </div>
+            </div>
+            <div class="legend">
+              <div class="legend-item"><span class="sw" style="background:#22c55e"></span><span class="name">Graduate</span><span class="val">2,209 (49.9%)</span></div>
+              <div class="legend-item"><span class="sw" style="background:#f59e0b"></span><span class="name">Enrolled</span><span class="val">794 (17.9%)</span></div>
+              <div class="legend-item"><span class="sw" style="background:#ef4444"></span><span class="name">Dropout</span><span class="val">1,421 (32.1%)</span></div>
+            </div>
+          </div>
+
+          <div class="dataset-note">
+            <div class="ic">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            </div>
+            <div><strong>Source:</strong> UCI "Predict Students' Dropout and Academic Success" dataset — the same real-world records EduTrack's risk model is trained on.</div>
+          </div>
+        </div>
+
+        <div class="float-btn bell">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </div>
+        <div class="float-btn chart">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18.7 8 12 14.7l-3.5-3.5L3 16.5"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE CARDS -->
+  <section class="features">
+    <div class="feature-card">
+      <div class="feature-ic green">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <div class="feature-eyebrow green">For admins</div>
+      <h4>Manage the roster</h4>
+      <p>Add and update student academic records — attendance, grades, tuition status — and run risk predictions per student.</p>
+      <div class="feature-arrow green">&rsaquo;</div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-ic blue">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+      </div>
+      <div class="feature-eyebrow blue">For students</div>
+      <h4>See your own progress</h4>
+      <p>Log in to a personal dashboard showing your attendance, GPA, and semester unit progress — always up to date.</p>
+      <div class="feature-arrow blue">&rsaquo;</div>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-ic violet">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-2.04Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24A2.5 2.5 0 0 0 14.5 2Z"/></svg>
+      </div>
+      <div class="feature-eyebrow violet">Behind the scenes</div>
+      <h4>ML-driven risk scoring</h4>
+      <p>A trained model reads each student's academic profile and classifies risk — visible only to admins to guide support, not to label students.</p>
+      <div class="feature-arrow violet">&rsaquo;</div>
+    </div>
+  </section>
+
+  <!-- STATUS BAND -->
+  <section class="status-band">
+    <div class="status-inner">
+      <div class="status-visual">
+        <div class="ring r1"></div>
+        <div class="ring r2"></div>
+        <div class="status-shield">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4Z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <div class="dot" style="background:#22c55e; top:14px; left:14px;"></div>
+        <div class="dot" style="background:#ef4444; top:6px; right:22px;"></div>
+        <div class="dot" style="background:#f59e0b; bottom:10px; left:40px;"></div>
+        <div class="dot" style="background:#c9c3ee; bottom:30px; right:4px; width:8px; height:8px;"></div>
+      </div>
+
+      <div>
+        <h3 class="status-title">How risk status works</h3>
+        <div class="status-cols">
+          <div class="status-col">
+            <div class="head"><span class="dot" style="background:#22c55e"></span>On track</div>
+            <p>Meeting attendance and academic benchmarks.</p>
+          </div>
+          <div class="status-col">
+            <div class="head"><span class="dot" style="background:#f59e0b"></span>Watch</div>
+            <p>Early signs worth monitoring.</p>
+          </div>
+          <div class="status-col">
+            <div class="head"><span class="dot" style="background:#ef4444"></span>At risk</div>
+            <p>Needs intervention soon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTE -->
+  <div class="note-bar">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+    Already have an account? Use the Sign in menu above to continue as a student or admin.
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="app-footer">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="glyph">ET</div>
+                <div>
+                    <div class="name">EduTrack</div>
+                    <div class="tagline">Student dropout risk tracking</div>
+                </div>
+            </div>
+            <nav class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="login.html?role=student">Student login</a>
+                <a href="login.html?role=admin">Admin login</a>
+            </nav>
+            <div class="footer-contact">
+                <a href="mailto:support@edutrack.app">support@edutrack.app</a><br>
+                &copy; 2026 EduTrack &mdash; Innolift Ventures capstone
+            </div>
+        </div>
+  </footer>
+
+<script>
+    const toggle = document.getElementById('loginToggle');
+    const menu = document.getElementById('loginMenu');
+    toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', () => {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --ink: #1A2233;
+  --ink-soft: #5B6478;
+  --paper: #F5F7FA;
+  --paper-raised: #FFFFFF;
+  --line: #E1E5EC;
+  --brand: #33415C;
+  --radius: 6px;
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "IBM Plex Sans", -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.app-shell-stacked {
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.quick-risk-check {
+  width: 100%;
+  max-width: 520px;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.8rem 2rem 2.2rem;
+}
+
+.qrc-intro h1 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0 0 0.5rem;
+}
+
+.qrc-intro p {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin: 0 0 1.6rem;
+}
+
+.qrc-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.qrc-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.qrc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.qrc-field span {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.qrc-field input {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  padding: 0.6em 0.8em;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper-raised);
+  color: var(--ink);
+}
+
+.qrc-field input:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(51,65,92,0.12);
+}
+
+.risk-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+}
+
+.risk-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+}
+
+.risk-card-label {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.risk-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  padding: 0.28em 0.65em;
+  border-radius: 999px;
+}
+
+.risk-pill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.risk-metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.87rem;
+}
+
+.risk-metric-row:last-child { border-bottom: none; }
+.risk-metric-row .k { color: var(--ink-soft); }
+.risk-metric-row .v { font-family: var(--font-mono); font-weight: 600; }
+
+@media (max-width: 480px) {
+  .qrc-inputs { grid-template-columns: 1fr; }
+}
