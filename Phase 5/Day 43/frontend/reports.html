@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reports — EduTrack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="edutrack.css">
+</head>
+<body>
+<div class="page-shell">
+<header class="app-header">
+    <div class="header-left">
+        <button class="collapse-toggle" id="sidebarCollapseToggle" aria-label="Toggle sidebar" title="Toggle sidebar">&#9776;</button>
+        <div class="brand-mark">
+            <div class="glyph">ET</div>
+            <div class="name">EduTrack</div>
+        </div>
+    </div>
+    <div class="header-right">
+        <span class="header-user" id="headerUser">Ms. Rao</span>
+        <a href="#" class="btn btn-ghost" id="headerSignOut">Sign out</a>
+    </div>
+</header>
+
+<div class="app">
+
+    <nav class="sidebar">
+        <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="sidebar-nav" id="sidebarNav">
+            <a href="dashboard.html"><span class="dot"></span><span class="label">Dashboard</span></a>
+            <a href="students.html"><span class="dot"></span><span class="label">Students</span></a>
+            <a href="reports.html" class="active"><span class="dot"></span><span class="label">Reports</span></a>
+            <a href="settings.html"><span class="dot"></span><span class="label">Settings</span></a>
+        </div>
+        <div class="sidebar-foot" id="sidebarFoot">Ms. Rao<br>Computer Science</div>
+    </nav>
+
+    <main class="main">
+
+        <div class="topbar">
+            <div>
+                <span class="eyebrow">Cohort · CS-2026-A</span>
+                <h1>Reports</h1>
+                <p class="sub">Cohort-level patterns behind the individual risk scores.</p>
+            </div>
+        </div>
+
+        <div style="display:flex; justify-content:flex-end; margin-bottom:1rem;">
+            <button class="btn btn-primary" id="downloadReportBtn">&#8595; Download cohort report</button>
+        </div>
+
+        <div class="panel chart-panel">
+            <div class="panel-head">
+                <h2>Risk distribution</h2>
+            </div>
+            <div class="panel-body">
+                <p class="chart-note">Based on the 10 students sampled from the real UCI dropout-risk dataset.</p>
+                <div class="distribution-bar">
+                    <span class="seg-green" style="width:50%;"></span>
+                    <span class="seg-amber" style="width:20%;"></span>
+                    <span class="seg-red" style="width:30%;"></span>
+                </div>
+                <div class="legend">
+                    <span><span class="dot green"></span>On track — <strong>5</strong></span>
+                    <span><span class="dot amber"></span>Watch — <strong>2</strong></span>
+                    <span><span class="dot red"></span>At risk — <strong>3</strong></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="reports-grid">
+
+            <div class="panel chart-panel">
+                <div class="panel-head">
+                    <h2>Engagement trend <span style="font-size:0.7rem;color:var(--ink-soft);font-weight:400;">(illustrative)</span></h2>
+                </div>
+                <div class="panel-body">
+                    <p class="chart-note">The source dataset is a single end-of-semester snapshot, not weekly records — this chart shows the shape a real trend view would take once attendance/engagement tracking is wired in.</p>
+                    <div id="trendChart"></div>
+                </div>
+            </div>
+
+            <div class="panel chart-panel">
+                <div class="panel-head">
+                    <h2>Cohort risk drivers</h2>
+                </div>
+                <div class="panel-body">
+                    <p class="chart-note">Feature importance from the dropout-risk model, averaged across the cohort.</p>
+                    <div class="factor">
+                        <div class="factor-label"><span class="name">1st sem. units approved</span><span class="weight">0.31</span></div>
+                        <div class="factor-bar"><span style="width:31%;"></span></div>
+                    </div>
+                    <div class="factor">
+                        <div class="factor-label"><span class="name">Admission grade</span><span class="weight">0.24</span></div>
+                        <div class="factor-bar"><span style="width:24%;"></span></div>
+                    </div>
+                    <div class="factor">
+                        <div class="factor-label"><span class="name">Attendance rate</span><span class="weight">0.19</span></div>
+                        <div class="factor-bar"><span style="width:19%;"></span></div>
+                    </div>
+                    <div class="factor">
+                        <div class="factor-label"><span class="name">Tuition fees up to date</span><span class="weight">0.14</span></div>
+                        <div class="factor-bar"><span style="width:14%;"></span></div>
+                    </div>
+                    <div class="factor">
+                        <div class="factor-label"><span class="name">Scholarship holder</span><span class="weight">0.08</span></div>
+                        <div class="factor-bar"><span style="width:8%;"></span></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="panel chart-panel">
+            <div class="panel-head">
+                <h2>By course</h2>
+            </div>
+            <table class="course-table">
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Students</th>
+                        <th>Avg. completion</th>
+                        <th>Avg. grade (0–20)</th>
+                        <th>At risk</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nursing</td>
+                        <td>2</td>
+                        <td>87%</td>
+                        <td>12.1</td>
+                        <td><span class="rag-pill green"><span class="dot"></span>0</span></td>
+                    </tr>
+                    <tr>
+                        <td>Management</td>
+                        <td>1</td>
+                        <td>100%</td>
+                        <td>11.2</td>
+                        <td><span class="rag-pill green"><span class="dot"></span>0</span></td>
+                    </tr>
+                    <tr>
+                        <td>Veterinary Nursing</td>
+                        <td>1</td>
+                        <td>100%</td>
+                        <td>14.4</td>
+                        <td><span class="rag-pill green"><span class="dot"></span>0</span></td>
+                    </tr>
+                    <tr>
+                        <td>Advertising &amp; Marketing Mgmt</td>
+                        <td>1</td>
+                        <td>80%</td>
+                        <td>12.2</td>
+                        <td><span class="rag-pill green"><span class="dot"></span>0</span></td>
+                    </tr>
+                    <tr>
+                        <td>Social Service</td>
+                        <td>1</td>
+                        <td>83%</td>
+                        <td>11.8</td>
+                        <td><span class="rag-pill green"><span class="dot"></span>0</span></td>
+                    </tr>
+                    <tr>
+                        <td>Basic Education</td>
+                        <td>1</td>
+                        <td>86%</td>
+                        <td>12.3</td>
+                        <td><span class="rag-pill green"><span class="dot"></span>0</span></td>
+                    </tr>
+                    <tr>
+                        <td>Informatics Engineering</td>
+                        <td>1</td>
+                        <td>20%</td>
+                        <td>11.3</td>
+                        <td><span class="rag-pill red"><span class="dot"></span>1</span></td>
+                    </tr>
+                    <tr>
+                        <td>Tourism</td>
+                        <td>1</td>
+                        <td>0%</td>
+                        <td>—</td>
+                        <td><span class="rag-pill red"><span class="dot"></span>1</span></td>
+                    </tr>
+                    <tr>
+                        <td>Equinculture</td>
+                        <td>1</td>
+                        <td>0%</td>
+                        <td>—</td>
+                        <td><span class="rag-pill red"><span class="dot"></span>1</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </main>
+</div>
+
+<script src="app.js"></script>
+<script>
+    document.getElementById('downloadReportBtn').addEventListener('click', () => {
+        const rows = [['Course', 'Students', 'Avg. completion', 'Avg. grade (0-20)', 'At risk']];
+        document.querySelectorAll('.course-table tbody tr').forEach(tr => {
+            const cells = Array.from(tr.querySelectorAll('td')).map(td => td.textContent.trim());
+            rows.push(cells);
+        });
+        const csv = rows.map(r => r.map(v => `"${v.replace(/"/g, '""')}"`).join(',')).join('\n');
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `edutrack-cohort-report-${new Date().toISOString().slice(0,10)}.csv`;
+        a.click();
+        URL.revokeObjectURL(url);
+    });
+</script>
+
+<footer class="app-footer">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <div class="glyph">ET</div>
+                    <div>
+                        <div class="name">EduTrack</div>
+                        <div class="tagline">Student dropout risk tracking</div>
+                    </div>
+                </div>
+                <nav class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="login.html?role=student">Student login</a>
+                    <a href="login.html?role=admin">Admin login</a>
+                </nav>
+                <div class="footer-contact">
+                    <a href="mailto:support@edutrack.app">support@edutrack.app</a><br>
+                    &copy; 2026 EduTrack &mdash; Innolift Ventures capstone
+                </div>
+            </div>
+        </footer>
+</div><!-- /.page-shell -->
+</body>
+</html>
