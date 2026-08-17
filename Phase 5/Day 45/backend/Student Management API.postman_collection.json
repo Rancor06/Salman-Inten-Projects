@@ -1,0 +1,115 @@
+{
+  "info": {
+    "name": "Student Management API",
+    "_postman_id": "d45-student-mgmt-api",
+    "description": "Day 45 — API testing collection for the EduTrack Student Management app (React -> Flask -> MySQL).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://127.0.0.1:5000" }
+  ],
+  "item": [
+    {
+      "name": "GET /api/students - list all students",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{base_url}}/api/students", "host": ["{{base_url}}"], "path": ["api", "students"] }
+      }
+    },
+    {
+      "name": "POST /api/students - valid student",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test Student\",\n  \"email\": \"test@example.com\",\n  \"course\": \"Computer Science\"\n}"
+        },
+        "url": { "raw": "{{base_url}}/api/students", "host": ["{{base_url}}"], "path": ["api", "students"] }
+      }
+    },
+    {
+      "name": "POST /api/students - empty name",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"\",\n  \"email\": \"test2@example.com\",\n  \"course\": \"IT\"\n}"
+        },
+        "url": { "raw": "{{base_url}}/api/students", "host": ["{{base_url}}"], "path": ["api", "students"] }
+      }
+    },
+    {
+      "name": "POST /api/students - missing email",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test Student\",\n  \"course\": \"IT\"\n}"
+        },
+        "url": { "raw": "{{base_url}}/api/students", "host": ["{{base_url}}"], "path": ["api", "students"] }
+      }
+    },
+    {
+      "name": "POST /api/students - missing course",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Test Student\",\n  \"email\": \"test3@example.com\"\n}"
+        },
+        "url": { "raw": "{{base_url}}/api/students", "host": ["{{base_url}}"], "path": ["api", "students"] }
+      }
+    },
+    {
+      "name": "POST /api/students - empty JSON body",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{}" },
+        "url": { "raw": "{{base_url}}/api/students", "host": ["{{base_url}}"], "path": ["api", "students"] }
+      }
+    },
+    {
+      "name": "POST /api/students - no request body",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": { "raw": "{{base_url}}/api/students", "host": ["{{base_url}}"], "path": ["api", "students"] }
+      }
+    },
+    {
+      "name": "POST /api/students - duplicate email",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Another Student\",\n  \"email\": \"test@example.com\",\n  \"course\": \"IT\"\n}"
+        },
+        "url": { "raw": "{{base_url}}/api/students", "host": ["{{base_url}}"], "path": ["api", "students"] },
+        "description": "Run the 'valid student' request first so this email already exists."
+      }
+    },
+    {
+      "name": "GET /api/student - invalid endpoint",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": { "raw": "{{base_url}}/api/student", "host": ["{{base_url}}"], "path": ["api", "student"] }
+      }
+    },
+    {
+      "name": "DELETE /api/students - unsupported method",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": { "raw": "{{base_url}}/api/students", "host": ["{{base_url}}"], "path": ["api", "students"] }
+      }
+    }
+  ]
+}
