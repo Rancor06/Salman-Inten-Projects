@@ -1,0 +1,614 @@
+/* ==========================================
+   EDUTRACK — DESIGN TOKENS
+   60% dominant (--bg) · 30% secondary (--surface/--ink/--border) · 10% accent (--accent/--signal)
+   ========================================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #10151F;
+  --muted: #5B6472;
+  --faint: #8B93A1;
+  --ghost: #D8DCE3;
+  --bg: #F7F8FA;
+  --surface: #FFFFFF;
+  --border: #E1E5EB;
+  --accent: #0F766E;
+  --accent-soft: #E6F4F2;
+  --accent-dark: #0B5C56;
+  --signal: #B45309;
+  --error: #B42318;
+  --radius: 12px;
+}
+
+body {
+  font-family: 'Public Sans', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* ==========================================
+   LAYOUT — sidebar + document
+   ========================================== */
+.layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  min-height: 100vh;
+}
+
+/* ==========================================
+   SIDEBAR — "student file" cover
+   ========================================== */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 0 32px 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-tab {
+  width: 88px;
+  height: 34px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  margin: 0 0 0 32px;
+  position: relative;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-tab span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+}
+
+.sidebar-inner {
+  border-top: 1px solid var(--border);
+  padding-top: 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  background: var(--accent);
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.brand-mark svg { width: 20px; height: 20px; stroke: white; }
+
+.brand-name {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1.1875rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.brand-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6875rem;
+  color: var(--faint);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-top: 1px;
+}
+
+/* Record stamp */
+.record-stamp {
+  border: 1.5px dashed var(--ghost);
+  border-radius: var(--radius);
+  padding: 20px 18px;
+  margin-bottom: 24px;
+}
+
+.avatar-placeholder {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1.5px dashed var(--faint);
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+}
+
+.avatar-placeholder svg { width: 22px; height: 22px; stroke: var(--faint); }
+
+.record-stamp .stamp-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--faint);
+  margin-bottom: 4px;
+}
+
+.record-stamp .stamp-value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Section checklist */
+.checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: auto;
+}
+
+.checklist li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 4px;
+  font-size: 0.875rem;
+  color: var(--muted);
+  border-bottom: 1px solid var(--bg);
+}
+
+.checklist li:last-child { border-bottom: none; }
+
+.checklist li.active { color: var(--ink); font-weight: 600; }
+
+.checklist li.active .num {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.checklist li.done { color: var(--faint); }
+
+.checklist li.done .num {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: white;
+  font-size: 0.75rem;
+}
+
+.checklist .num {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ghost);
+  display: grid;
+  place-items: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--faint);
+  flex-shrink: 0;
+}
+
+.sidebar-footer {
+  padding-top: 24px;
+  margin-top: 24px;
+  border-top: 1px solid var(--border);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--faint);
+  line-height: 1.7;
+}
+
+/* ==========================================
+   CONTENT — document flow
+   ========================================== */
+.content {
+  padding: 64px 64px 96px;
+  max-width: 760px;
+}
+
+.back-link {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  margin-bottom: 28px;
+}
+
+.back-link:hover { color: var(--accent-dark); }
+
+.intro h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 2.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.intro p {
+  font-size: 1.0625rem;
+  color: var(--muted);
+  max-width: 54ch;
+  margin-bottom: 48px;
+}
+
+/* Document sections with ghost margin numerals */
+.doc-section {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 24px;
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+}
+
+.doc-index {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 2.75rem;
+  font-weight: 600;
+  color: var(--ghost);
+  line-height: 1;
+}
+
+.doc-heading {
+  margin-bottom: 22px;
+}
+
+.doc-heading h2 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.doc-heading p {
+  font-size: 0.875rem;
+  color: var(--faint);
+}
+
+/* ==========================================
+   GRID
+   ========================================== */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px 24px;
+}
+
+.full { grid-column: 1 / -1; }
+
+/* ==========================================
+   DOCUMENT-STYLE FIELDS — underline, not boxed
+   ========================================== */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.field .hint {
+  font-size: 0.8125rem;
+  color: var(--faint);
+  font-weight: 400;
+  margin-left: 6px;
+}
+
+.req { color: var(--error); margin-left: 2px; }
+
+.field input,
+.field select {
+  width: 100%;
+  height: 40px;
+  padding: 0 2px;
+  border: none;
+  border-bottom: 1.5px solid var(--border);
+  border-radius: 0;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--ink);
+  background: transparent;
+  transition: border-color 150ms;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235B6472' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+  padding-right: 28px;
+  cursor: pointer;
+}
+
+.field input::placeholder { color: var(--ghost); }
+
+.field input:focus,
+.field select:focus {
+  outline: none;
+  border-bottom-color: var(--accent);
+}
+
+/* ==========================================
+   GENDER RADIO GROUP — inline pills
+   ========================================== */
+.radio-group { display: flex; gap: 8px; padding-top: 2px; }
+
+.radio-group label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted);
+  background: transparent;
+  transition: all 150ms;
+}
+
+.radio-group label:has(input:checked) {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-dark);
+  font-weight: 600;
+}
+
+.radio-group input[type="radio"] {
+  accent-color: var(--accent);
+  width: 15px;
+  height: 15px;
+}
+
+/* ==========================================
+   TRANSCRIPT STRIP — the one boxed element on the page
+   ========================================== */
+.transcript {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.transcript-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  border-left: 3px solid var(--signal);
+}
+
+.transcript-header h3 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--signal);
+}
+
+.transcript-header span {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6875rem;
+  color: var(--faint);
+}
+
+.transcript-body { padding: 22px 24px 26px; }
+
+.transcript-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 18px;
+}
+
+.transcript .field label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.transcript .field input,
+.transcript .field select {
+  font-family: 'IBM Plex Mono', monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  height: 44px;
+  padding: 0 12px;
+  background: var(--bg);
+}
+
+.transcript .field input:focus,
+.transcript .field select:focus {
+  border-color: var(--signal);
+  background: var(--surface);
+}
+
+/* ==========================================
+   SUBMIT
+   ========================================== */
+.doc-footer {
+  padding: 40px 0 0;
+}
+
+.btn-primary {
+  width: 100%;
+  height: 52px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 9px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 150ms;
+  letter-spacing: -0.01em;
+}
+
+.btn-primary:hover { background: var(--accent-dark); }
+.btn-primary:active { transform: translateY(1px); }
+
+.doc-footer p {
+  font-size: 0.8125rem;
+  color: var(--faint);
+  text-align: center;
+  margin-top: 16px;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px 24px;
+  }
+  .sidebar-tab { margin-left: 24px; }
+  .checklist { margin-bottom: 24px; }
+  .content { padding: 48px 24px 64px; max-width: 100%; }
+}
+
+@media (max-width: 600px) {
+  .grid-2, .transcript-row { grid-template-columns: 1fr; }
+  .content { padding: 40px 18px 56px; }
+  .intro h1 { font-size: 1.75rem; }
+  .doc-section { grid-template-columns: 1fr; gap: 10px; }
+  .doc-index { font-size: 1.5rem; }
+  .radio-group { flex-wrap: wrap; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+
+/* ==========================================
+   VALIDATION STATES
+   ========================================== */
+.err-msg {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--error);
+  min-height: 0;
+  display: none;
+  margin-top: -2px;
+}
+
+.err-msg.show { display: block; }
+
+.field input.error,
+.field select.error {
+  border-bottom-color: var(--error);
+}
+
+.field input.valid,
+.field select.valid {
+  border-bottom-color: var(--accent);
+}
+
+.transcript .field input.error,
+.transcript .field select.error {
+  border-color: var(--error);
+  background: #FEF3F2;
+}
+
+.transcript .field input.valid,
+.transcript .field select.valid {
+  border-color: var(--accent);
+}
+
+.radio-group.error label {
+  border-color: var(--error);
+}
+
+/* Password strength (used from Task 02 onward) */
+.pw-meter {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.pw-meter span {
+  flex: 1;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  transition: background 200ms;
+}
+
+.pw-strength-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--faint);
+  margin-top: 6px;
+  min-height: 16px;
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: -80px;
+  right: 24px;
+  background: var(--ink);
+  color: white;
+  padding: 14px 20px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  z-index: 1000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  transition: bottom 380ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.toast.show { bottom: 24px; }
+
+.toast-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
