@@ -140,14 +140,10 @@ button { font-family: inherit; cursor: pointer; }
     font-size: 0.88rem;
     color: #C7CDDA;
 }
-.sidebar-nav a .dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: #4A5468;
-    flex-shrink: 0;
-}
+.nav-icon { width:18px; height:18px; flex-shrink:0; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; color:#9DA7BA; }
 .sidebar-nav a:hover { background: rgba(255,255,255,0.06); color: #fff; }
 .sidebar-nav a.active { background: rgba(255,255,255,0.09); color: #fff; }
-.sidebar-nav a.active .dot { background: var(--rag-green); }
+.sidebar-nav a.active .nav-icon { color:var(--rag-green); }
 .sidebar-nav a[aria-disabled="true"] { opacity: 0.4; pointer-events: none; }
 
 .sidebar-foot {
@@ -259,6 +255,7 @@ button { font-family: inherit; cursor: pointer; }
     padding: 0.28em 0.65em;
     border-radius: 999px;
 }
+.rag-pill { white-space: nowrap; flex-shrink: 0; }
 .rag-pill .dot { width: 6px; height: 6px; border-radius: 50%; }
 .rag-pill.green { background: var(--rag-green-bg); color: var(--rag-green); }
 .rag-pill.green .dot { background: var(--rag-green); }
@@ -528,7 +525,9 @@ textarea.note-input:focus { outline: none; border-color: var(--brand); }
 }
 .alert-item:last-child { border-bottom: none; }
 .alert-item:hover { background: var(--brand-soft); }
-.alert-item .why { font-size: 0.8rem; color: var(--ink-soft); margin-top: 0.15rem; }
+.alert-item .alert-info { min-width: 0; flex: 1 1 auto; }
+.alert-item .student-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.alert-item .why { font-size: 0.8rem; color: var(--ink-soft); margin-top: 0.15rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .alert-item .row-link { margin-left: auto; flex-shrink: 0; }
 
 .quick-links { display: flex; flex-direction: column; gap: 0.8rem; }
@@ -762,6 +761,18 @@ textarea.note-input:focus { outline: none; border-color: var(--brand); }
 .action-link.edit { color: var(--brand); margin-right: 0.9rem; }
 .action-link.delete { color: var(--rag-red); }
 
+.code-combobox { position: relative; }
+.code-combobox-list {
+    position: absolute; z-index: 20; top: calc(100% + 4px); left: 0; right: 0;
+    max-height: 220px; overflow-y: auto; margin: 0; padding: 0.3rem 0; list-style: none;
+    background: #fff; border: 1px solid var(--line); border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(29, 26, 58, 0.16);
+}
+.code-combobox-list li {
+    padding: 0.5rem 0.75rem; font-size: 0.85rem; color: var(--ink); cursor: pointer;
+}
+.code-combobox-list li:hover { background: var(--brand-soft); }
+
 /* ============================================
    SHARED TOAST
    ============================================ */
@@ -778,3 +789,29 @@ textarea.note-input:focus { outline: none; border-color: var(--brand); }
 .toast.error { background: var(--rag-red); }
 .toast-dot { width: 8px; height: 8px; background: var(--rag-green); border-radius: 50%; flex-shrink: 0; }
 .toast.error .toast-dot { background: #fff; }
+
+/* ============================================
+   PANEL LOADER — added for data-fetch loading states
+   (student roster, student detail, student dashboard)
+   ============================================ */
+.panel-loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    padding: 3rem 1rem;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+}
+.panel-loader-spin {
+    width: 20px;
+    height: 20px;
+    border: 2.5px solid var(--brand-soft);
+    border-top-color: var(--brand);
+    border-radius: 50%;
+    display: inline-block;
+    animation: panel-loader-spin 0.7s linear infinite;
+}
+@keyframes panel-loader-spin {
+    to { transform: rotate(360deg); }
+}

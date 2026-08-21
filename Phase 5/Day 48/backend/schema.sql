@@ -18,6 +18,11 @@ CREATE TABLE students (
     debtor TINYINT(1) DEFAULT 0,
     tuition_up_to_date TINYINT(1) DEFAULT 1,
     dropout_risk VARCHAR(20) DEFAULT 'Prediction Pending',
+    risk_prediction VARCHAR(32) NULL,
+    risk_confidence DECIMAL(6,4) NULL,
+    risk_probabilities JSON NULL,
+    prediction_inputs JSON NULL,
+    risk_analyzed_at TIMESTAMP NULL,
     notes TEXT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

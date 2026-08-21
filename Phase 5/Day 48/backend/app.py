@@ -1,4 +1,5 @@
 import time
+import json
 from functools import wraps
 from flask import Flask, request, jsonify, session
 from flask_cors import CORS
@@ -281,7 +282,19 @@ def get_student(student_id):
 def admin_create_student():
     """Adds a student record AND a linked login account (default password = roll_no)."""
     from werkzeug.security import generate_password_hash
-    data = request.get_json()
+    data = request.get_json(silent=True) or {}
+    missing = [key for key in ("name", "roll_no") if not str(data.get(key, "")).strip()]
+    if missing:
+        return jsonify({"success": False, "error": f"Missing required field(s): {', '.join(missing)}"}), 400
+
+    # Save only after the real model validates and evaluates the feature set.
+    try:
+        prediction_input = validate_prediction_input(data.get("prediction_input"))
+        prediction = run_dropout_prediction(prediction_input)
+    except InvalidPredictionInput as e:
+        return jsonify({"success": False, "error": str(e)}), 400
+    except Exception as e:
+        return jsonify({"success": False, "error": f"Prediction failed: {e}"}), 500
 
     conn = get_connection()
     if not conn:
@@ -293,8 +306,10 @@ def admin_create_student():
                (name, roll_no, course, admission_grade, attendance_percentage, gpa,
                 units_1st_sem_enrolled, units_1st_sem_approved,
                 units_2nd_sem_enrolled, units_2nd_sem_approved,
-                scholarship_holder, debtor, tuition_up_to_date, dropout_risk)
-               VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",
+                scholarship_holder, debtor, tuition_up_to_date, dropout_risk,
+                risk_prediction, risk_confidence, risk_probabilities,
+                prediction_inputs, risk_analyzed_at)
+               VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,NOW())""",
             (
                 data["name"], data["roll_no"], data.get("course"),
                 data.get("admission_grade"), data.get("attendance_percentage"),
@@ -302,7 +317,8 @@ def admin_create_student():
                 data.get("units_1st_sem_approved"), data.get("units_2nd_sem_enrolled"),
                 data.get("units_2nd_sem_approved"), data.get("scholarship_holder", 0),
                 data.get("debtor", 0), data.get("tuition_up_to_date", 1),
-                data.get("dropout_risk", "Prediction Pending"),
+                prediction["prediction"], prediction["prediction"], prediction["confidence"],
+                json.dumps(prediction["probabilities"]), json.dumps(prediction_input),
             )
         )
         new_student_id = cursor.lastrowid
@@ -325,6 +341,7 @@ def admin_create_student():
         "success": True,
         "id": new_student_id,
         "message": "Student added successfully",
+        "risk_analysis": prediction,
         "login_username": username,
         "default_password": data["roll_no"]
     }), 201
@@ -337,30 +354,73 @@ def update_student(student_id):
     conn = get_connection()
     if not conn:
         return jsonify({"success": False, "error": "DB connection failed"}), 500
+
+    # Optional: when the edit form includes a full set of model inputs (used
+    # for students that don't have a prediction yet — see the Student
+    # Directory's Edit panel), run the trained model and persist the result
+    # alongside the basic field update, in the same request.
+    prediction = None
+    prediction_input = None
+    if data.get("prediction_input"):
+        try:
+            prediction_input = validate_prediction_input(data.get("prediction_input"))
+            prediction = run_dropout_prediction(prediction_input)
+        except InvalidPredictionInput as e:
+            conn.close()
+            return jsonify({"success": False, "error": str(e)}), 400
+        except Exception as e:
+            conn.close()
+            return jsonify({"success": False, "error": f"Prediction failed: {e}"}), 500
+
     cursor = conn.cursor()
-    cursor.execute(
-        """UPDATE students SET
-             name=%s, course=%s, admission_grade=%s, attendance_percentage=%s, gpa=%s,
-             units_1st_sem_enrolled=%s, units_1st_sem_approved=%s,
-             units_2nd_sem_enrolled=%s, units_2nd_sem_approved=%s,
-             scholarship_holder=%s, debtor=%s, tuition_up_to_date=%s
-           WHERE id=%s""",
-        (
-            data.get("name"), data.get("course"), data.get("admission_grade"),
-            data.get("attendance_percentage"), data.get("gpa"),
-            data.get("units_1st_sem_enrolled"), data.get("units_1st_sem_approved"),
-            data.get("units_2nd_sem_enrolled"), data.get("units_2nd_sem_approved"),
-            data.get("scholarship_holder"), data.get("debtor"), data.get("tuition_up_to_date"),
-            student_id
+    if prediction:
+        cursor.execute(
+            """UPDATE students SET
+                 name=%s, course=%s, admission_grade=%s, attendance_percentage=%s, gpa=%s,
+                 units_1st_sem_enrolled=%s, units_1st_sem_approved=%s,
+                 units_2nd_sem_enrolled=%s, units_2nd_sem_approved=%s,
+                 scholarship_holder=%s, debtor=%s, tuition_up_to_date=%s,
+                 dropout_risk=%s, risk_prediction=%s, risk_confidence=%s,
+                 risk_probabilities=%s, prediction_inputs=%s, risk_analyzed_at=NOW()
+               WHERE id=%s""",
+            (
+                data.get("name"), data.get("course"), data.get("admission_grade"),
+                data.get("attendance_percentage"), data.get("gpa"),
+                data.get("units_1st_sem_enrolled"), data.get("units_1st_sem_approved"),
+                data.get("units_2nd_sem_enrolled"), data.get("units_2nd_sem_approved"),
+                data.get("scholarship_holder"), data.get("debtor"), data.get("tuition_up_to_date"),
+                prediction["prediction"], prediction["prediction"], prediction["confidence"],
+                json.dumps(prediction["probabilities"]), json.dumps(prediction_input),
+                student_id
+            )
         )
-    )
+    else:
+        cursor.execute(
+            """UPDATE students SET
+                 name=%s, course=%s, admission_grade=%s, attendance_percentage=%s, gpa=%s,
+                 units_1st_sem_enrolled=%s, units_1st_sem_approved=%s,
+                 units_2nd_sem_enrolled=%s, units_2nd_sem_approved=%s,
+                 scholarship_holder=%s, debtor=%s, tuition_up_to_date=%s
+               WHERE id=%s""",
+            (
+                data.get("name"), data.get("course"), data.get("admission_grade"),
+                data.get("attendance_percentage"), data.get("gpa"),
+                data.get("units_1st_sem_enrolled"), data.get("units_1st_sem_approved"),
+                data.get("units_2nd_sem_enrolled"), data.get("units_2nd_sem_approved"),
+                data.get("scholarship_holder"), data.get("debtor"), data.get("tuition_up_to_date"),
+                student_id
+            )
+        )
     conn.commit()
     updated = cursor.rowcount
     cursor.close()
     conn.close()
     if not updated:
         return jsonify({"success": False, "error": "Not found"}), 404
-    return jsonify({"success": True, "message": "Student updated successfully"})
+    response = {"success": True, "message": "Student updated successfully"}
+    if prediction:
+        response["risk_analysis"] = prediction
+    return jsonify(response)
 
 
 @app.route("/admin/students/<int:student_id>", methods=["DELETE"])
@@ -421,6 +481,37 @@ def predict_risk(student_id):
         cursor.close()
         conn.close()
         return jsonify({"success": False, "error": "Not found"}), 404
+
+    stored_input = student.get("prediction_inputs")
+    if isinstance(stored_input, str):
+        try:
+            stored_input = json.loads(stored_input)
+        except json.JSONDecodeError:
+            stored_input = None
+    if not stored_input:
+        cursor.close()
+        conn.close()
+        return jsonify({"success": False, "error": "This student has no saved model inputs to re-analyse."}), 400
+    try:
+        result = run_dropout_prediction(validate_prediction_input(stored_input))
+    except (InvalidPredictionInput, Exception) as e:
+        cursor.close()
+        conn.close()
+        return jsonify({"success": False, "error": f"Prediction failed: {e}"}), 500
+
+    update_cursor = conn.cursor()
+    update_cursor.execute(
+        """UPDATE students SET dropout_risk=%s, risk_prediction=%s,
+           risk_confidence=%s, risk_probabilities=%s, risk_analyzed_at=NOW()
+           WHERE id=%s""",
+        (result["prediction"], result["prediction"], result["confidence"],
+         json.dumps(result["probabilities"]), student_id),
+    )
+    conn.commit()
+    update_cursor.close()
+    cursor.close()
+    conn.close()
+    return jsonify({"success": True, "student_id": student_id, "risk_analysis": result})
 
     risk = predict_dropout_risk(student)  # None until the real model is integrated
 

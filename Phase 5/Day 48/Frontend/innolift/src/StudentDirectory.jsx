@@ -30,7 +30,7 @@ function StudentDirectory() {
         }
         const data = await res.json();
         setStudents(data);
-      } catch (err) {
+    } catch {
         setError('Unable to load students.');
       } finally {
         setLoading(false);

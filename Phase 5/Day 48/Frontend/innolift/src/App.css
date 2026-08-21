@@ -1,6 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
-:root {
+/* Scoped to .app-shell-stacked (the wrapper PredictorPage renders these
+   components inside) rather than :root. These variable names collide
+   with edutrack.css's own --ink/--brand/etc (different values) — since
+   Vite bundles all imported CSS into one stylesheet, a :root here would
+   silently override Educere's site-wide color scheme on every page.
+   Custom properties still inherit normally to every descendant of
+   .app-shell-stacked, so nothing changes for these components themselves. */
+.app-shell-stacked {
   --ink: #1A2233;
   --ink-soft: #5B6478;
   --paper: #F5F7FA;
@@ -13,14 +20,8 @@
   --font-mono: "IBM Plex Mono", monospace;
 }
 
-* { box-sizing: border-box; }
+.app-shell-stacked, .app-shell-stacked * { box-sizing: border-box; }
 
-body {
-  margin: 0;
-  font-family: var(--font-body);
-  color: var(--ink);
-  background: var(--paper);
-}
 
 .app-shell {
   min-height: 100vh;
@@ -159,9 +160,35 @@ body {
 }
 /* Day 47: PredictionForm (real /api/predict call, not a local heuristic) */
 .prediction-form-wrap {
-  width: 100%;
-  max-width: 900px;
-  margin-top: 2rem;
+  width: min(100%, 980px);
+  margin-top: .4rem;
+}
+
+.predictor-workspace .prediction-model-form {
+  display: block;
+  padding: 1.4rem;
+  margin: 0;
+}
+
+.predictor-workspace .pf-section {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: .85rem;
+  padding: 1rem;
+}
+
+.predictor-workspace .pf-section legend { grid-column: 1 / -1; }
+.predictor-workspace .pf-section label { min-width: 0; }
+.predictor-workspace .pf-section input:not([type="checkbox"]) { width: 100%; background: #fff; color: #1A2233; }
+.predictor-workspace .pf-section:has(.pf-toggles) { display: block; }
+.predictor-workspace .pf-toggles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .65rem 1rem; }
+.predictor-workspace .pf-toggle { display: grid; grid-template-columns: 18px 1fr; align-items: center; gap: .55rem; margin: 0; }
+.predictor-workspace .pf-toggle input { width: auto !important; margin: 0; }
+.predictor-workspace .prediction-model-form > button { margin-top: .25rem; }
+
+@media (max-width: 720px) {
+  .predictor-workspace .pf-section { grid-template-columns: 1fr; }
+  .predictor-workspace .pf-toggles { grid-template-columns: 1fr; }
 }
 
 .pf-toggles {
