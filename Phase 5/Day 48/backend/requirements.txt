@@ -1,9 +1,0 @@
-flask
-flask-cors
-mysql-connector-python
-werkzeug
-python-dotenv
-gunicorn
-scikit-learn==1.6.1
-pandas
-numpy
