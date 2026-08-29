@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+venv/
+.venv/
+node_modules/
+# One-time plaintext credential reports from migrate_student_accounts.py —
+# never commit these (see that script's docstring).
+student_credentials_*.csv
